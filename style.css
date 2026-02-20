@@ -121,3 +121,30 @@ hr {
         border-bottom: 1px solid #e0e0e0;
     }
 }
+
+/* Nasconde le sottoliste di default */
+.submenu {
+    display: none;
+    margin-top: 5px;
+}
+
+/* Questa classe verrà aggiunta dal JavaScript per mostrare la lista */
+.submenu.aperto {
+    display: block;
+}
+
+/* Stile per il testo cliccabile che espande il menu */
+.menu-toggle {
+    cursor: pointer;
+    font-weight: bold;
+    color: #6200ea; /* Colore del tema */
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background 0.2s;
+    user-select: none; /* Evita che il testo si selezioni mentre si clicca */
+}
+
+.menu-toggle:hover {
+    background-color: #ede7f6;
+}
