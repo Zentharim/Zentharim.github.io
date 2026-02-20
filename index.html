@@ -16,28 +16,37 @@
         <nav class="sidebar">
             <ul>
                 <li><a href="index.html" class="active">Home / Capitoli</a></li>
-                <li><a href="#personaggi">Personaggi & NPC</a></li>
-                <ul>
-                    <li><a href="#personaggi">Professori & Staff</a></li>
+                <li>
+                    <a href="#personaggi">Personaggi & NPC</a>
                     <ul>
-                        <li><a href="#professori">Professori</a></li>
+                        <li>
+                            <a href="#professori-staff">Professori & Staff</a>
                             <ul>
-                                <li><a href="#professori">High Sun-Mage Oyamba</a></li>
-                                <li><a href="#professori">Teacher Janatimo</a></li>
-                                <li><a href="#professori">Takalu Ot</a></li>
-                                <li><a href="#professori">Koride Ulawa</a></li>
-                                <li><a href="#professori">Zuma</a></li>
-                                <li><a href="#professori">Ahassunu</a></li>
-                                <li><a href="#professori">Mafika Ayuwari</a></li>
-                                <li><a href="#professori">Teacher Nhyira</a></li>
+                                <li>
+                                    <span class="menu-toggle">Professori ▼</span>
+                                    <ul class="submenu">
+                                        <li><a href="#professori">High Sun-Mage Oyamba</a></li>
+                                        <li><a href="#professori">Teacher Janatimo</a></li>
+                                        <li><a href="#professori">Takalu Ot</a></li>
+                                        <li><a href="#professori">Koride Ulawa</a></li>
+                                        <li><a href="#professori">Zuma</a></li>
+                                        <li><a href="#professori">Ahassunu</a></li>
+                                        <li><a href="#professori">Mafika Ayuwari</a></li>
+                                        <li><a href="#professori">Teacher Nhyira</a></li>
+                                    </ul>
+                                </li>
+                                
+                                <li>
+                                    <span class="menu-toggle">Staff ▼</span>
+                                    <ul class="submenu">
+                                        <li><a href="#staff">Lumusi Yao</a></li>
+                                        <li><a href="#staff">Xhokan</a></li>
+                                    </ul>
+                                </li>
                             </ul>
-                        <li><a href="#staff">Staff</a></li>
-                            <ul>
-                                <li><a href="#staff">Lumusi Yao</a></li>
-                                <li><a href="#staff">Xhokan</a></li>
-                            </ul>
+                        </li>
                     </ul>
-                </ul>
+                </li>
             </ul>
         </nav>
 
@@ -55,5 +64,27 @@
             <hr>
         </main>
     </div>
+
+    <script>
+        // Seleziona tutti gli elementi che fungono da interruttore (toggle)
+        const toggles = document.querySelectorAll('.menu-toggle');
+
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                // Trova la lista successiva al testo cliccato (il nostro ul.submenu)
+                const sottomenu = this.nextElementSibling;
+                
+                // Aggiunge o rimuove la classe 'aperto'
+                sottomenu.classList.toggle('aperto');
+                
+                // Opzionale: cambia la freccia da giù a su
+                if (sottomenu.classList.contains('aperto')) {
+                    this.textContent = this.textContent.replace('▼', '▲');
+                } else {
+                    this.textContent = this.textContent.replace('▲', '▼');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
