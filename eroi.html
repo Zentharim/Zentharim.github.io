@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strength of Thousands</title>
+    <title>Eroi - Strength of Thousands</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,33 +13,50 @@
         <div id="sidebar-container"></div>
 
         <main class="content">
-            <h1>Eroi</h1>
-            <p>Seleziona un elemento dalla barra laterale o scorri per visualizzare i dettagli.</p>
+            <h1>I Nostri Eroi</h1>
+            <p>Gli studenti eccezionali della Magaambya che daranno forma al futuro del mondo.</p>
+            
+            <hr>
 
-            <section>
-                <article id="any">
-                    <h2>Any</h2>
-                    <img src="img/professors/takulu.png" alt="Any">
-                    <ul>
-                        <li>Donna Anadi</li>
-                        <li>lorem ipsum</li>
-                    </ul>
+            <section class="hero-grid">
+                
+                <article id="any" class="hero-card">
+                    <div class="hero-img-container">
+                        <img src="img/professors/takulu.png" alt="Any">
+                    </div>
+                    <div class="hero-info">
+                        <h2>Any</h2>
+                        <ul class="hero-traits">
+                            <li><strong>Stirpe:</strong> Donna Anadi</li>
+                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Una studentessa brillante dalle grandi potenzialità.</li>
+                        </ul>
+                    </div>
                 </article>
-                <article id="irus">
-                    <h2>Irus</h2>
-                    <img src="img/professors/takulu.png" alt="Irus">
-                    <ul>
-                        <li>Maschio Umano, proveniente dall'Ustalav.</li>
-                        <li>lorem ipsum</li>
-                    </ul>
+
+                <article id="irus" class="hero-card">
+                    <div class="hero-img-container">
+                        <img src="img/professors/takulu.png" alt="Irus">
+                    </div>
+                    <div class="hero-info">
+                        <h2>Irus</h2>
+                        <ul class="hero-traits">
+                            <li><strong>Stirpe:</strong> Maschio Umano, proveniente dall'Ustalav.</li>
+                            <li>Lorem ipsum dolor sit amet. Ha viaggiato molto prima di arrivare ai cancelli dell'accademia.</li>
+                        </ul>
+                    </div>
                 </article>
-                <article id="fiorenzo">
-                    <h2>Fiorenzo</h2>
-                    <img src="img/professors/takulu.png" alt="Fiorenzo">
-                    <ul>
-                        <li>Uomo Samsaran/Tanuki, originariamente proveniente dal Tian Xia. Nella sua attuale reincarnazione è nato nei pressi di Nantambu.</li>
-                        <li>lorem ipsum</li>
-                    </ul>
+
+                <article id="fiorenzo" class="hero-card">
+                    <div class="hero-img-container">
+                        <img src="img/professors/takulu.png" alt="Fiorenzo">
+                    </div>
+                    <div class="hero-info">
+                        <h2>Fiorenzo</h2>
+                        <ul class="hero-traits">
+                            <li><strong>Stirpe:</strong> Uomo Samsaran/Tanuki, originario del Tian Xia. Nato nei pressi di Nantambu in questa incarnazione.</li>
+                            <li>Lorem ipsum dolor sit amet. Un'anima antica con una nuova prospettiva sul mondo.</li>
+                        </ul>
+                    </div>
                 </article>
 
             </section>
@@ -85,6 +102,7 @@
             });
         }
 
+        // Caricamento simultaneo di Header e Sidebar sistemato
         Promise.all([
             fetch('header.html').then(r => r.text()),
             fetch('sidebar.html').then(r => r.text())
@@ -93,12 +111,9 @@
             document.getElementById('sidebar-container').innerHTML = sidebarHTML;
             initHeader();
             initSidebar();
-        })
-            .then(r => r.text())
-            .then(html => {
-                document.getElementById('sidebar-container').innerHTML = html;
-                initSidebar();
-            });
+        }).catch(error => {
+            console.error("Errore nel caricamento dell'interfaccia:", error);
+        });
     </script>
 </body>
 </html>
