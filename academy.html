@@ -243,14 +243,15 @@
         function initSidebar() {
             const toggles = document.querySelectorAll('.menu-toggle');
             toggles.forEach(toggle => {
+                // Pulizia magica: rimuove le vecchie frecce testuali se sono scritte nell'HTML
+                toggle.innerHTML = toggle.innerHTML.replace('▼', '').replace('▲', '').trim();
+
                 toggle.addEventListener('click', function() {
                     const sottomenu = this.nextElementSibling;
                     sottomenu.classList.toggle('aperto');
-                    if (sottomenu.classList.contains('aperto')) {
-                        this.textContent = this.textContent.replace('▼', '▲');
-                    } else {
-                        this.textContent = this.textContent.replace('▲', '▼');
-                    }
+                    
+                    // Aggiungiamo la classe 'aperto' anche al bottone stesso per animarlo col CSS!
+                    this.classList.toggle('aperto'); 
                 });
             });
         }

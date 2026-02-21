@@ -136,6 +136,9 @@ h1, h2, h3, h4 {
 }
 
 .sidebar a, .menu-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-decoration: none;
     color: var(--text-muted);
     font-weight: 500;
@@ -144,6 +147,22 @@ h1, h2, h3, h4 {
     border-radius: 8px;
     transition: all 0.2s ease;
     cursor: pointer;
+}
+
+.menu-toggle::after {
+    content: '✦';
+    color: var(--accent); /* Colore oro */
+    font-size: 1.1rem;
+    font-weight: normal;
+    /* Un'animazione morbidissima per la rotazione e il bagliore */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
+/* Quando il menu viene cliccato (classe .aperto), la stella ruota e brilla! */
+.menu-toggle.aperto::after {
+    transform: rotate(135deg) scale(1.15); /* Piroetta magica */
+    color: var(--primary); /* Cambia colore in viola */
+    text-shadow: 0 0 10px rgba(255, 179, 0, 0.9); /* Effetto bagliore oro */
 }
 
 /* Area Contenuti rialzata (stile Card) */
