@@ -410,3 +410,71 @@ hr {
     top: 0;
     font-size: 1.1rem;
 }
+
+/* =========================================
+   STILI PER IL CALENDARIO COLLASSABILE
+   ========================================= */
+
+/* Stile per i contenitori espandibili (Anni e Mesi) */
+details.year-details, details.month-details {
+    margin-bottom: 15px;
+}
+
+details.year-details > summary, details.month-details > summary {
+    list-style: none; /* Rimuove la freccia di default del browser */
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: var(--bg-card);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    border: 1px solid rgba(74, 20, 140, 0.08);
+    transition: all 0.2s ease;
+    user-select: none; /* Evita di evidenziare il testo cliccando */
+}
+
+/* Nasconde la freccia su Safari */
+details > summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Effetto hover */
+details.year-details > summary:hover, details.month-details > summary:hover {
+    background-color: rgba(74, 20, 140, 0.04);
+    transform: translateX(4px);
+}
+
+/* Allinea i titoli dentro il blocco cliccabile */
+details.year-details > summary h2, details.month-details > summary h3 {
+    margin: 0;
+    color: var(--primary);
+}
+
+/* La nostra freccia personalizzata animata */
+details.year-details > summary::after, details.month-details > summary::after {
+    content: '▼';
+    color: var(--primary);
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+/* Quando il dettaglio è APERTO, ruota la freccia in sù */
+details[open] > summary::after {
+    transform: rotate(180deg);
+}
+
+/* Spaziatura per la tabella quando il mese è aperto */
+details.month-details > .calendar-table {
+    margin-top: 15px;
+    margin-left: 10px; /* Piccolo rientro per far capire la gerarchia */
+    width: calc(100% - 10px);
+}
+
+/* Rientro per i mesi rispetto all'anno */
+.year-content {
+    padding-left: 20px;
+    margin-top: 20px;
+    border-left: 2px solid rgba(74, 20, 140, 0.1);
+}
