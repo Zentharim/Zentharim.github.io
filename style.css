@@ -46,10 +46,34 @@ h1, h2, h3, h4 {
 }
 
 .topbar .logo {
-    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+}
+
+.topbar .logo-icon {
+    font-size: 2rem;
+    /* Diamo un leggero bagliore magico alla farfalla */
+    filter: drop-shadow(0 0 8px rgba(255, 179, 0, 0.6)); 
+    animation: float 3s ease-in-out infinite;
+}
+
+.topbar .logo-text {
     font-family: 'Lora', serif;
+    font-size: 1.6rem;
     font-weight: 700;
     letter-spacing: 0.5px;
+    /* Testo color oro con una leggera ombra per staccarlo dallo sfondo viola */
+    color: var(--accent); 
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Piccola animazione per far "fluttuare" la farfalla */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+    100% { transform: translateY(0px); }
 }
 
 .search-bar {
