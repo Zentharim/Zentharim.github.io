@@ -64,6 +64,13 @@ h1, h2, h3, h4 {
     box-shadow: 0 0 0 3px rgba(255, 179, 0, 0.5); /* Glow dorato */
 }
 
+/* Rende l'intero contenitore dell'header appiccicoso in cima alla pagina */
+#header-container {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
 /* Layout a griglia con spaziature migliori */
 .container {
     display: flex;
