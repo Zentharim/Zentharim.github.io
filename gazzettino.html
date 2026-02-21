@@ -5,6 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gazzettino - Strength of Thousands</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Stili per rendere ordinate le liste dei luoghi */
+        .location-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        .location-list li {
+            margin-bottom: 15px;
+            padding-left: 22px;
+            position: relative;
+            line-height: 1.6;
+        }
+        .location-list li::before {
+            content: '✦';
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 1.1rem;
+        }
+        .location-list strong {
+            color: var(--primary);
+            font-size: 1.05rem;
+        }
+    </style>
 </head>
 <body>
     <div id="header-container"></div>
@@ -13,6 +39,75 @@
         <div id="sidebar-container"></div>
 
         <main class="content">
+            <h1>Gazzettino</h1>
+            <p>Esplora il campus della Magaambya, i segreti del Dormitorio della Guglia e le strade della città di Nantambu.</p>
+            
+            <hr>
+
+            <h2 id="magaambya-campus">Campus della Magaambya</h2>
+            <img src="https://gmdoug.sfo3.digitaloceanspaces.com/campus-labeled.jpg" alt="Mappa del Campus della Magaambya">
+            
+            <details class="month-details" open>
+                <summary><h3>Luoghi di Interesse sul Campus</h3></summary>
+                <div class="year-content">
+                    <ul class="location-list">
+                        <!--<li><strong>1. Palco dell'Oratore (Speaker's Stage):</strong> L'estremità ovest dell'isola si estende in un'area artificiale. Grandi bacini di pietra circondano un palco, illuminandolo magicamente. È usato per annunci ufficiali della scuola, ma anche per concerti e spettacoli gratuiti degli studenti.</li>-->
+                        <!--<li><strong>2. Viale di Benvenuto (Welcome Walk):</strong> Il luogo dove avete incontrato per la prima volta l'insegnante Takulu Ot.</li>-->
+                        <!--<li><strong>3. Biblioteca del Ceppo d'Albero:</strong> La vecchia biblioteca abbandonata, purtroppo infestata da gremlin e pesciolini d'argento.</li>-->
+                        <li><strong>4. Pila di Polveri (Powderpile):</strong> Chiamata affettuosamente così per la sua enorme collezione di reagenti magici. È l'emporio per studenti gestito dal meticoloso coboldo Xhokan.</li>
+                        <!--<li><strong>6. Giardini dei Leshy:</strong> Il regno selvaggio e incolto dei leshy. Qui lavorano ai loro misteriosi progetti top-secret!</li>-->
+                        <li><strong>7. Dormitorio della Guglia (Spire Dormitory):</strong> Il vostro dormitorio.</li>
+                        <li><strong>9. Mensa (Dining Hall):</strong> Qui gli studenti mangiano gratis! È aperta dall'alba fino a due ore prima del tramonto.</li>
+                        <!--<li><strong>11. Biblioteca Archhorn:</strong> Scolpita da un'enorme lastra inclinata di granito a forma di corno e sormontata da una cupola a specchio che ospita un planetario. La maestosa sala principale si estende per dieci piani, con scale a chiocciola di marmo verde e piattaforme fluttuanti in mithral.</li>-->
+                    </ul>
+                </div>
+            </details>
+
+            <br><hr><br>
+
+            <h2 id="spire-dorm">Dormitorio della Guglia (Spire Dorm)</h2>
+            <img src="https://gmdoug.sfo3.digitaloceanspaces.com/dorm_med-numbered.jpg" alt="Mappa del Dormitorio della Guglia">
+
+            <details class="month-details">
+                <summary><h3>Aree Comuni e Servizi</h3></summary>
+                <div class="year-content">
+                    <ul class="location-list">
+                        <!--<li><strong>1. Guglia Svettante:</strong> Un pilastro anti-gravitazionale che gli studenti usano per arrivare sul tetto e lanciarsi col deltaplano. Nessuno sa quale fosse il suo scopo originale.</li>-->
+                        <!--<li><strong>2. Soluzioni Onniveggenti:</strong> Una maschera di Nethys incastrata nel muro. Inserendo una moneta d'argento potrebbe darvi la risposta che cercate. Viene usata dagli studenti disperati (specialmente Haibram). L'ha creata Ignaci.</li>-->
+                        <!--<li><strong>3. Botola Segreta:</strong> Conduce direttamente ai tunnel sotterranei della scuola.</li>-->
+                        <!--<li><strong>4. Bagni e Lavanderia:</strong> La magia mantiene l'acqua calda e fresca. La lavanderia Est è abitata da amichevoli elementali <em>Spellskeins</em> che si occupano del bucato.</li>-->
+                        <!--<li><strong>6. Stagno delle Rane:</strong> Mariama è convinta che il posto sia maledetto e che le rane la tormentino di proposito. Chimwemwe sospetta sia a causa dei profumi che indossa.</li>-->
+                        <!--<li><strong>9. Sala Giochi:</strong> Piena di giochi da tavolo, freccette e cerchi. Tutto è tenuto in modo incredibilmente organizzato e impeccabile, senza un granello di polvere.</li>-->
+                        <li><strong>22. Sala Comune (Lounge):</strong> L'area in cui gli studenti si riuniscono regolarmente per rilassarsi o organizzare feste.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="month-details">
+                <summary><h3>Stanze degli Studenti</h3></summary>
+                <div class="year-content">
+                    <ul class="location-list">
+                        <!--<li><strong>7. Stanza di Anchor Root:</strong> Abbastanza ordinata, a parte qualche escremento di pollo essiccato. Contiene mucchi di ossicini puliti e vaschette che fungono da casa per la sua collezione di enormi scarabei della frutta.</li>
+                        <li><strong>8. Stanza di Esi:</strong> Piena fino all'orlo di bastoni da trekking, pezzi di cuoio, pergamene, colla per libri e innumerevoli progetti di cucito a metà.</li>
+                        <li><strong>10. Stanza di Chizire:</strong> Il pezzo forte della sua stanza è un distillatore di moonshine (alcol) perfettamente funzionante, che occupa la maggior parte dello spazio.</li>
+                        <li><strong>11. Stanza di Haibram:</strong> Dopo aver perso la sua stanza più grande a carte contro Mariama, vive in questo spazio più ristretto circondato da una collezione di armi e un paio di gigantesche ali di drago fatte di stoffa.</li>
+                        <li><strong>13. Stanza di Noxolo:</strong> Molti vestiti da ballo, forzieri di forniture mediche e un'enorme caraffa d'acqua che funge da estintore d'emergenza. I mobili sono schiacciati contro i muri per lasciare spazio a una magica pista da ballo al centro.</li>
+                        <li><strong>15. Stanza di Mariama:</strong> Ex stanza di Haibram. Piena di armi di legno da allenamento, vecchie pergamene, ninnoli magici scarichi e un pupazzo a forma di lucertola. Odora pesantemente di narcotici. Il suo famiglio, un varano di nome Kedu, dorme spesso alla finestra.</li>
+                        <li><strong>16. Stanza di Tzeniwe:</strong> La stanza più grande del dormitorio, concessa giustamente perché ha due bambini. Appare perennemente disordinata con giocattoli, ragnatele e lavori di tessitura attaccati ovunque, persino sul soffitto.</li>
+                        <li><strong>17. Stanza di Ignaci & Okoro:</strong> Piena di attrezzature alchemiche in vetro. Ignaci sfrutta la stanza per vendere ufficiosamente elisir e strumenti alchemici.</li>-->
+                        <li><strong>12. Stanza di Any</strong></li>
+                        <li><strong>14. Stanza di Irus</strong></li>
+                        <li><strong>20. Stanza di Fiorenzo</strong></li>
+                    </ul>
+                </div>
+            </details>
+
+            <br><hr><br>
+            
+            <h2 id="nantambu">Città di Nantambu</h2>
+            <img src="https://gmdoug.sfo3.digitaloceanspaces.com/Nantambu.jpg" alt="Mappa della Città di Nantambu">
+            <p>Nantambu è un gioiello splendente della Distesa Mwangi incastonato in un'ansa del fiume Vanji. Attraversata da canali e adornata da campanelli di vetro tintinnanti su ogni finestra e porta, è una casa adatta per la Magaambya, la più antica scuola di magia arcana di Golarion. La sua posizione sul Vanji la rende un fulcro sia per le navi che risalgono il fiume dal mare, sia per le carovane che attraversano le giungle circostanti.</p>
+            <p>I profumi di ricche spezie e legni rari riempiono i mercati all'aperto della città, mentre i vetrai e i mercanti di stoffe espongono una varietà sgargiante di colori e design geometrici mozzafiato.</p>
 
         </main>
     </div>
@@ -56,9 +151,7 @@
             });
         }
 
-        // Inizializza l'effetto Lightbox (Schermo intero per le immagini)
         function initLightbox() {
-            // 1. Crea la struttura HTML del lightbox e la aggiunge alla fine della pagina
             if (!document.querySelector('.lightbox')) {
                 const lightboxHTML = `
                     <div class="lightbox">
@@ -74,25 +167,20 @@
             const lightbox = document.querySelector('.lightbox');
             const lightboxImg = lightbox.querySelector('img');
             const closeBtn = document.querySelector('.lightbox-close');
-
-            // 2. Seleziona tutte le immagini dentro l'area principale
             const images = document.querySelectorAll('.content img');
 
-            // 3. Rende le immagini cliccabili e le apre nel lightbox
             images.forEach(img => {
-                img.style.cursor = 'pointer'; // Cambia il cursore in una manina
+                img.style.cursor = 'pointer';
                 img.addEventListener('click', function() {
-                    lightboxImg.src = this.src; // Copia l'indirizzo dell'immagine cliccata
-                    lightbox.classList.add('active'); // Mostra il lightbox
+                    lightboxImg.src = this.src;
+                    lightbox.classList.add('active');
                 });
             });
 
-            // 4. Chiude il lightbox cliccando sulla "X"
             closeBtn.addEventListener('click', () => {
                 lightbox.classList.remove('active');
             });
 
-            // 5. Chiude il lightbox se si clicca sullo sfondo scuro
             lightbox.addEventListener('click', (e) => {
                 if (e.target === lightbox || e.target === lightbox.querySelector('.lightbox-content')) {
                     lightbox.classList.remove('active');
@@ -100,23 +188,17 @@
             });
         }
 
-        // Script di caricamento corretto senza .then() spezzati
         Promise.all([
             fetch('header.html').then(r => r.text()),
             fetch('sidebar.html').then(r => r.text())
         ]).then(([headerHTML, sidebarHTML]) => {
             document.getElementById('header-container').innerHTML = headerHTML;
             document.getElementById('sidebar-container').innerHTML = sidebarHTML;
-            
-            // Avvia tutte le funzioni necessarie
             initHeader();
             initSidebar();
-            initLightbox(); // <--- AGGIUNGI QUESTA RIGA QUI
-            
-            // Su calendar.html ci sarà anche initCalendar();
-            
+            initLightbox();
         }).catch(error => {
-            console.error("Errore nel caricamento dei file esterni:", error);
+            console.error("Errore nel caricamento dell'interfaccia:", error);
         });
     </script>
 </body>
