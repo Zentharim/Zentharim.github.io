@@ -171,31 +171,75 @@ hr {
     }
 }
 
-/* Nasconde le sottoliste di default */
+/* =========================================
+   STILI PER I SOTTOMENU E GERARCHIA
+   ========================================= */
+
+/* Linea guida ad albero e rientri */
 .submenu {
     display: none;
     margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 15px;      /* Spazio interno rispetto alla linea */
+    margin-left: 12px;       /* Rientro da sinistra */
+    border-left: 2px solid rgba(74, 20, 140, 0.15); /* Linea verticale elegante viola chiaro */
 }
 
-/* Questa classe verrà aggiunta dal JavaScript per mostrare la lista */
+/* Animazione fluida quando il menu viene aperto tramite JavaScript */
 .submenu.aperto {
     display: block;
+    animation: fadeInDown 0.3s ease-out forwards;
 }
 
-/* Stile per il testo cliccabile che espande il menu */
-.menu-toggle {
-    cursor: pointer;
-    font-weight: bold;
-    color: #6200ea; /* Colore del tema */
-    display: block;
-    padding: 10px;
-    border-radius: 4px;
-    transition: background 0.2s;
-    user-select: none; /* Evita che il testo si selezioni mentre si clicca */
+/* Animazione per far scorrere morbidamente il testo verso il basso */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.menu-toggle:hover {
-    background-color: #ede7f6;
+/* Voci dentro ai sottomenu: leggermente più piccole per dare gerarchia */
+.submenu a, .submenu .menu-toggle {
+    font-size: 0.95rem;
+    padding: 8px 12px;
+    font-weight: 400; /* Tolto il grassetto dai sottomenu per renderli più leggeri */
+    position: relative;
+}
+
+/* Effetto speciale per i LINK FINALI (I personaggi) */
+.submenu a {
+    color: var(--text-muted);
+}
+
+/* Puntino dorato decorativo che appare al passaggio del mouse sui personaggi */
+.submenu a::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent); /* Colore dorato */
+    border-radius: 50%;
+    position: absolute;
+    left: -20px; /* Posizionato sulla linea guida */
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    transition: all 0.2s ease;
+}
+
+/* Quando si passa il mouse, il link diventa viola, si sposta a destra e spunta il puntino d'oro */
+.submenu a:hover {
+    color: var(--primary);
+    background-color: transparent; /* Rimuove lo sfondo grigio dai sottomenu */
+    transform: translateX(5px);
+    font-weight: 500;
+}
+
+.submenu a:hover::before {
+    transform: translateY(-50%) scale(1);
 }
 
 /* Stili per il Calendario */
