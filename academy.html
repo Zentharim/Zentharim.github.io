@@ -5,6 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vita Accademica - Strength of Thousands</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Stili aggiuntivi per la pagina dell'Accademia */
+        .branch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .branch-card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(74, 20, 140, 0.1);
+            border-left: 5px solid var(--accent);
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+        .branch-card h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95em;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+        .styled-table thead tr {
+            background-color: var(--primary);
+            color: #ffffff;
+            text-align: left;
+        }
+        .styled-table th, .styled-table td {
+            padding: 12px 15px;
+        }
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: rgba(74, 20, 140, 0.02);
+        }
+        .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid var(--primary);
+        }
+    </style>
 </head>
 <body>
     <div id="header-container"></div>
@@ -13,7 +60,159 @@
         <div id="sidebar-container"></div>
 
         <main class="content">
+            <h1>Studiare all'Accademia</h1>
             
+            <blockquote>
+                "Ascoltate, perché questa è una storia che ha un significato. Io canto le canzoni di coloro che sono venuti prima. Ci hanno insegnato molto di ciò che ricordiamo oggi, e ancora di più di ciò che abbiamo dimenticato. Canto la canzone di colui, il Vecchio Mago, che ci ha mostrato la via. Canto le canzoni dei Dieci, i Guerrieri Magici che hanno diffuso la sua missione... La loro forza e la loro eredità vivono in me. Ora vivranno anche in voi."
+                <br><br>— Lore-Speaker Janatimo
+            </blockquote>
+
+            <p>Nella campagna Strength of Thousands, avrete l'opportunità di interpretare studenti della Magaambya, la più antica e leggendaria scuola di magia di tutto Golarion. Imparerete nuova magia, avanzerete negli studi, sceglierete uno dei cinque prestigiosi rami a cui unirvi e molto altro. Non smetterete mai di essere Magaambyani, legati indissolubilmente a migliaia e migliaia di studenti venuti prima di voi.</p>
+            <p>Il sottosistema accademico vi aiuta a esprimere la crescita del vostro personaggio durante il periodo alla Magaambya, da iniziati che faticano a trovare il loro posto fino a diventare potenze accademiche rispettate. Guadagnerete una serie di utili benefici per migliorare le capacità del vostro personaggio in base ai progressi nel vostro lavoro accademico.</p>
+            
+            <hr>
+
+            <h2 id="branches">I Cinque Rami di Studio</h2>
+            <p>Gli studiosi Magaambyani credono in molti valori fondamentali. I principali sono l'adattabilità, il cameratismo, l'immaginazione, la conoscenza e il valore. Gli insegnamenti della scuola sono divisi in cinque rami, ognuno dei quali enfatizza uno di questi valori.</p>
+
+            <div class="branch-grid">
+                <div class="branch-card">
+                    <h3>Portatori della Cascata (Cascade Bearers)</h3>
+                    <p>Stimano l'<strong>immaginazione</strong>, dai sogni dei teorici magici più visionari alle innovazioni di chi risolve i problemi in modo creativo.</p>
+                </div>
+                <div class="branch-card">
+                    <h3>Rami di Smeraldo (Emerald Boughs)</h3>
+                    <p>Enfatizzano il <strong>cameratismo</strong>, il senso di comunità e la connessione con i compagni Magaambyani; interagiscono anche con chi è esterno all'accademia per diffonderne il messaggio.</p>
+                </div>
+                <div class="branch-card">
+                    <h3>Scribi della Pioggia (Rain-Scribes)</h3>
+                    <p>Valorizzano l'<strong>adattabilità</strong> nei pensieri e nelle azioni, così come la volontà di ammettere gli errori e imparare dal passato.</p>
+                </div>
+                <div class="branch-card">
+                    <h3>Maghi del Sole-Tempesta (Tempest-Sun Mages)</h3>
+                    <p>Ispirano <strong>valore</strong>, non solo il coraggio fisico di difendere gli amici, ma anche il coraggio intellettuale di considerare punti di vista opposti senza restare chiusi in un solo paradigma.</p>
+                </div>
+                <div class="branch-card">
+                    <h3>Uzunjati</h3>
+                    <p>Comprendono che la <strong>conoscenza</strong> vive nelle storie tramandate attraverso le generazioni e si guadagna ogni giorno attraverso l'esperienza personale.</p>
+                </div>
+            </div>
+
+            <p><br>Ogni studente sceglie un <strong>Ramo Primario</strong> per dare forma alla propria comprensione accademica, e un <strong>Ramo Secondario</strong> che integra la propria educazione. L'apprendimento all'interno di questi rami progredisce dai livelli 1 a 20. Non potete mai avere più livelli nel vostro ramo primario rispetto al livello del vostro personaggio, e non più della metà nel ramo secondario.</p>
+
+            <hr>
+
+            <h2 id="skills-lores-feats">Abilità dei Rami, Conoscenze e Talenti</h2>
+            <p>Ogni ramo ha due o tre abilità associate, una o più sottocategorie di conoscenze (Lore) e un talento generale. Man mano che guadagnate livelli nel vostro ramo, otterrete benefici che si applicano a queste competenze.</p>
+
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Ramo</th>
+                        <th>Abilità (Skills)</th>
+                        <th>Conoscenze (Lore)</th>
+                        <th>Talento Gen.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cascade Bearers</td>
+                        <td>Arcana, Occultism, Religion</td>
+                        <td>Academia Lore</td>
+                        <td>Canny Acumen</td>
+                    </tr>
+                    <tr>
+                        <td>Emerald Boughs</td>
+                        <td>Deception, Diplomacy, Society</td>
+                        <td>Insediamento specifico</td>
+                        <td>Adopted Ancestry</td>
+                    </tr>
+                    <tr>
+                        <td>Rain-Scribes</td>
+                        <td>Medicine, Nature, Survival</td>
+                        <td>Terreno specifico</td>
+                        <td>Fleet</td>
+                    </tr>
+                    <tr>
+                        <td>Tempest-Sun Mages</td>
+                        <td>Intimidation, Performance</td>
+                        <td>Warfare Lore</td>
+                        <td>Toughness</td>
+                    </tr>
+                    <tr>
+                        <td>Uzunjati</td>
+                        <td>Crafting, Lore, Performance</td>
+                        <td>Qualsiasi Lore</td>
+                        <td>Incredible Initiative</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Avanzare di Livello (Attività di Downtime)</h3>
+            <p>I livelli dei rami non avanzano automaticamente con i Punti Esperienza. Si avanzano attraverso il raggiungimento di risultati accademici tramite attività di Downtime (Pausa) specifiche che richiedono qualche mese di tempo interno al gioco:</p>
+            <ul>
+                <li><strong>Studiare (Study):</strong> Scegli un ramo ed esegui una prova in una delle abilità associate contro la CD fissa del livello del ramo. Un successo aumenta il livello del ramo di 1, un successo critico di 2. Un fallimento critico vi costringerà a saltare la prossima sessione di studio per recuperare.</li>
+                <li><strong>Sgobbare (Cram):</strong> Studi due volte (effettui due prove). Tuttavia questo comporta affaticamento: fino alla prossima attività di downtime, all'inizio di ogni giorno di avventura dovete superare una prova piatta (flat check) con CD 8 o sarete <em>affaticati</em> per quel giorno.</li>
+                <li><strong>Ricerca Pratica (Practical research):</strong> Si effettua sul campo esplorando e scoprendo cose nuove. Oltre ai benefici normali, può sbloccare opzioni uniche.</li>
+            </ul>
+
+            <hr>
+
+            <h2 id="benefits">Benefici dei Rami per Livello</h2>
+            <p>Espandi le sezioni qui sotto per vedere cosa guadagni ad ogni traguardo accademico nel tuo Ramo.</p>
+
+            <details class="month-details">
+                <summary><h3>Livelli 1 - 5</h3></summary>
+                <div class="year-content">
+                    <ul>
+                        <li><strong>Livello 1: Conoscenza Aggiuntiva.</strong> Ottieni il talento <em>Additional Lore</em> in un'abilità Lore associata al ramo.</li>
+                        <li><strong>Livello 2: Immerso nella Storia (+1).</strong> Ottieni un bonus di circostanza +1 alle prove di Ricordare Conoscenze (Recall Knowledge) relative alla Magaambya, ai principi del tuo ramo e ai suoi membri.</li>
+                        <li><strong>Livello 3: Attendant Dedicato.</strong> Se hai completato i requisiti, ottieni il talento bonus <em>Magaambyan Attendant Dedication</em>.</li>
+                        <li><strong>Livello 4: Talento di Abilità.</strong> Ottieni un talento di abilità che richiede il grado Addestrato in una delle abilità del ramo.</li>
+                        <li><strong>Livello 5: Influenza del Ramo (+1).</strong> Ottieni un bonus di circostanza +1 alle prove di Inganno, Diplomazia, Intimidazione ed Esibizione per interagire con i membri del tuo ramo.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="month-details">
+                <summary><h3>Livelli 6 - 10</h3></summary>
+                <div class="year-content">
+                    <ul>
+                        <li><strong>Livello 6: Aumento Abilità (Esperto).</strong> Puoi aumentare un'abilità associata fino al grado Esperto.</li>
+                        <li><strong>Livello 7: Primo Talento di Ramo.</strong> Ottieni il talento di archetipo di 6° livello associato al tuo ramo.</li>
+                        <li><strong>Livello 8: Talento Generale.</strong> Ottieni il talento generale associato al ramo (vedi tabella sopra).</li>
+                        <li><strong>Livello 9: Talento di Abilità (Esperto).</strong> Ottieni un talento di abilità aggiuntivo (fino al grado Esperto) per le tue abilità associate.</li>
+                        <li><strong>Livello 10: Aumento Abilità (Maestro).</strong> Puoi usare questo aumento per diventare Maestro in un'abilità in cui sei già Esperto.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="month-details">
+                <summary><h3>Livelli 11 - 15</h3></summary>
+                <div class="year-content">
+                    <ul>
+                        <li><strong>Livello 11: Immerso nella Storia (+2).</strong> Il bonus alle prove di conoscenze sulla scuola sale a +2.</li>
+                        <li><strong>Livello 12: Secondo Talento di Ramo.</strong> Ottieni il talento di archetipo di 10° livello associato al tuo ramo.</li>
+                        <li><strong>Livello 13: Influenza del Ramo (+2).</strong> Il bonus per le interazioni sociali coi membri del ramo sale a +2.</li>
+                        <li><strong>Livello 14: Aumento Abilità (Maestro).</strong> Nuovo aumento per le abilità associate fino al grado Maestro.</li>
+                        <li><strong>Livello 15: Talento di Abilità (Maestro).</strong> Ottieni un talento di abilità aggiuntivo (fino al grado Maestro).</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="month-details">
+                <summary><h3>Livelli 16 - 20</h3></summary>
+                <div class="year-content">
+                    <ul>
+                        <li><strong>Livello 16: Crea la tua Fortuna.</strong> Una volta al giorno, puoi ritirare una prova di abilità fatta con un'abilità del tuo ramo e tenere il nuovo risultato.</li>
+                        <li><strong>Livello 17: Influenza del Ramo (+3).</strong> Il bonus per le interazioni sociali coi membri del ramo sale a +3.</li>
+                        <li><strong>Livello 18: Aumento Abilità (Leggendario).</strong> Puoi aumentare un'abilità associata al grado Leggendario.</li>
+                        <li><strong>Livello 19: Talento di Abilità (Leggendario).</strong> Ottieni un talento di abilità aggiuntivo (fino al grado Leggendario).</li>
+                        <li><strong>Livello 20: Esempio Magico (Paragon).</strong> Ottieni un'abilità speciale unica a seconda del tuo ramo (es. lanciare un incantesimo di 7° livello extra per i Cascade Bearers, o creare un rifugio per gli Emerald Boughs).</li>
+                    </ul>
+                </div>
+            </details>
+
         </main>
     </div>
 
@@ -56,9 +255,7 @@
             });
         }
 
-        // Inizializza l'effetto Lightbox (Schermo intero per le immagini)
         function initLightbox() {
-            // 1. Crea la struttura HTML del lightbox e la aggiunge alla fine della pagina
             if (!document.querySelector('.lightbox')) {
                 const lightboxHTML = `
                     <div class="lightbox">
@@ -74,25 +271,20 @@
             const lightbox = document.querySelector('.lightbox');
             const lightboxImg = lightbox.querySelector('img');
             const closeBtn = document.querySelector('.lightbox-close');
-
-            // 2. Seleziona tutte le immagini dentro l'area principale
             const images = document.querySelectorAll('.content img');
 
-            // 3. Rende le immagini cliccabili e le apre nel lightbox
             images.forEach(img => {
-                img.style.cursor = 'pointer'; // Cambia il cursore in una manina
+                img.style.cursor = 'pointer';
                 img.addEventListener('click', function() {
-                    lightboxImg.src = this.src; // Copia l'indirizzo dell'immagine cliccata
-                    lightbox.classList.add('active'); // Mostra il lightbox
+                    lightboxImg.src = this.src;
+                    lightbox.classList.add('active');
                 });
             });
 
-            // 4. Chiude il lightbox cliccando sulla "X"
             closeBtn.addEventListener('click', () => {
                 lightbox.classList.remove('active');
             });
 
-            // 5. Chiude il lightbox se si clicca sullo sfondo scuro
             lightbox.addEventListener('click', (e) => {
                 if (e.target === lightbox || e.target === lightbox.querySelector('.lightbox-content')) {
                     lightbox.classList.remove('active');
@@ -100,23 +292,17 @@
             });
         }
 
-        // Script di caricamento corretto senza .then() spezzati
         Promise.all([
             fetch('header.html').then(r => r.text()),
             fetch('sidebar.html').then(r => r.text())
         ]).then(([headerHTML, sidebarHTML]) => {
             document.getElementById('header-container').innerHTML = headerHTML;
             document.getElementById('sidebar-container').innerHTML = sidebarHTML;
-            
-            // Avvia tutte le funzioni necessarie
             initHeader();
             initSidebar();
-            initLightbox(); // <--- AGGIUNGI QUESTA RIGA QUI
-            
-            // Su calendar.html ci sarà anche initCalendar();
-            
+            initLightbox();
         }).catch(error => {
-            console.error("Errore nel caricamento dei file esterni:", error);
+            console.error("Errore nel caricamento dell'interfaccia:", error);
         });
     </script>
 </body>
