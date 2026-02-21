@@ -1,19 +1,42 @@
 // Lightbox globale per immagini
-const lightbox = document.createElement('div');
-lightbox.className = 'lightbox';
-lightbox.innerHTML = `
-    <div class="lightbox-content">
-        <button class="lightbox-close">&times;</button>
-        <button class="lightbox-prev">&#10094;</button>
-        <img id="lightbox-img" src="" alt="">
-        <button class="lightbox-next">&#10095;</button>
-    </div>
-`;
-document.body.appendChild(lightbox);
-
+let lightbox;
 let currentImageIndex = 0;
 let images = [];
 let currentImageSrc = '';
+
+function setupLightbox() {
+    // Crea il lightbox
+    lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    lightbox.innerHTML = `
+        <div class="lightbox-content">
+            <button class="lightbox-close">&times;</button>
+            <button class="lightbox-prev">&#10094;</button>
+            <img id="lightbox-img" src="" alt="">
+            <button class="lightbox-next">&#10095;</button>
+        </div>
+    `;
+    document.body.appendChild(lightbox);
+
+    // Event listeners per i pulsanti del lightbox
+    document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    document.querySelector('.lightbox-prev').addEventListener('click', prevImage);
+    document.querySelector('.lightbox-next').addEventListener('click', nextImage);
+
+    // Chiudi cliccando sullo sfondo
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    // Chiudi con ESC e naviga con frecce
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') prevImage();
+        if (e.key === 'ArrowRight') nextImage();
+    });
+
+    initLightbox();
+}
 
 function initLightbox() {
     // Seleziona tutte le immagini nella pagina (escludendo logo, etc)
@@ -22,11 +45,14 @@ function initLightbox() {
     
     // Aggiungi event listener a ogni immagine
     images.forEach((img, index) => {
-        img.addEventListener('click', function() {
-            currentImageIndex = index;
-            openLightbox(this.src);
-        });
-        img.style.cursor = 'pointer';
+        if (!img.hasAttribute('data-lightbox-init')) {
+            img.addEventListener('click', function() {
+                currentImageIndex = images.indexOf(this);
+                openLightbox(this.src);
+            });
+            img.style.cursor = 'pointer';
+            img.setAttribute('data-lightbox-init', 'true');
+        }
     });
 }
 
@@ -56,32 +82,21 @@ function prevImage() {
     }
 }
 
-// Event listeners per i pulsanti del lightbox
-document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-document.querySelector('.lightbox-prev').addEventListener('click', prevImage);
-document.querySelector('.lightbox-next').addEventListener('click', nextImage);
-
-// Chiudi con ESC
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') prevImage();
-    if (e.key === 'ArrowRight') nextImage();
-});
-
-// Chiudi cliccando sullo sfondo
-lightbox.addEventListener('click', function(e) {
-    if (e.target === lightbox) closeLightbox();
-});
-
 // Inizializza quando la pagina è caricata
-document.addEventListener('DOMContentLoaded', initLightbox);
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupLightbox);
+} else {
+    setupLightbox();
+}
 
 // Se le immagini vengono caricate dinamicamente, reinizializza
-const observer = new MutationObserver(() => {
-    initLightbox();
-});
+if (document.querySelector('main')) {
+    const observer = new MutationObserver(() => {
+        initLightbox();
+    });
 
-observer.observe(document.querySelector('main'), {
-    childList: true,
-    subtree: true
-});
+    observer.observe(document.querySelector('main'), {
+        childList: true,
+        subtree: true
+    });
+}
