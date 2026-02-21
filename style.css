@@ -106,18 +106,59 @@ h1, h2, h3, h4 {
     cursor: pointer;
 }
 
-.sidebar a:hover, .menu-toggle:hover {
-    background-color: rgba(74, 20, 140, 0.05);
-    color: var(--primary);
-    transform: translateX(4px); /* Piccolo e stiloso scivolamento a destra */
-}
+/* =========================================
+   STILI PER LA SIDEBAR - PRIMO LIVELLO
+   ========================================= */
 
-.sidebar a.active {
+/* Applica il look "bottone viola" a tutti gli elementi principali */
+.sidebar > ul > li > a, 
+.sidebar > ul > li > .menu-toggle {
     background-color: rgba(74, 20, 140, 0.1);
     color: var(--primary);
     font-weight: bold;
     border-left: 4px solid var(--primary);
+    border-radius: 8px; /* Bordo arrotondato come da immagine */
+    padding: 10px 14px;
+    margin-bottom: 8px; /* Spazio tra un blocco e l'altro */
+    display: block;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
+
+/* Effetto al passaggio del mouse sui blocchi principali */
+.sidebar > ul > li > a:hover, 
+.sidebar > ul > li > .menu-toggle:hover {
+    background-color: rgba(74, 20, 140, 0.18); /* Leggermente più scuro */
+    transform: translateX(4px); /* Leggero scorrimento a destra */
+}
+
+/* =========================================
+   STILI PER I SOTTOMENU (Testo leggero)
+   ========================================= */
+
+/* Assicura che le voci all'interno dei sottomenu NON diventino dei blocchi enormi */
+.sidebar .submenu a, 
+.sidebar .submenu .menu-toggle {
+    background-color: transparent; /* Nessuno sfondo */
+    color: var(--text-muted);
+    font-weight: 400; /* Testo non in grassetto */
+    border-left: none; /* Rimuove la linea laterale spessa */
+    padding: 8px 12px;
+    margin-bottom: 0;
+}
+
+/* Hover per gli elementi nei sottomenu */
+.sidebar .submenu a:hover,
+.sidebar .submenu .menu-toggle:hover {
+    color: var(--primary);
+    background-color: transparent;
+    transform: translateX(5px);
+    font-weight: 500;
+}
+
+/* Elimina la regola .sidebar a.active precedente se presente, 
+   poiché ora il blocco è lo standard per il primo livello! */
 
 /* Area Contenuti rialzata (stile Card) */
 .content {
