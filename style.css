@@ -163,6 +163,25 @@ h1, h2, h3, h4 {
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
+.content p a, 
+.content li a {
+    color: var(--primary); /* Colore viola Magaambya */
+    text-decoration: none; /* Rimuove la brutta sottolineatura di default */
+    font-weight: 600; /* Leggermente in grassetto per farli spiccare */
+    padding: 0 2px;
+    border-bottom: 1.5px dashed rgba(74, 20, 140, 0.5); /* Linea tratteggiata viola semitrasparente */
+    transition: all 0.2s ease-in-out;
+}
+
+/* Effetto magico al passaggio del mouse */
+.content p a:hover, 
+.content li a:hover {
+    color: var(--primary);
+    background-color: rgba(255, 179, 0, 0.2); /* Leggero alone dorato di sfondo */
+    border-bottom: 1.5px solid var(--accent); /* La linea diventa continua e dorata */
+    border-radius: 3px; /* Smussa leggermente gli angoli dell'evidenziazione */
+}
+
 /* Stile per le citazioni storiche o le descrizioni */
 blockquote {
     border-left: 4px solid var(--accent);
