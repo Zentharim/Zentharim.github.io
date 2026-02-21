@@ -5,6 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oggetti & Abilità - Strength of Thousands</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Piccolo stile aggiuntivo per rendere la lista degli oggetti in linea col tema */
+        .item-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        .item-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 1.05rem;
+        }
+        .item-list li::before {
+            content: '✦';
+            color: var(--accent); /* La stellina d'oro */
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.1rem;
+        }
+        .item-list a {
+            color: var(--primary); /* Il viola Magaambya */
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .item-list a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+            padding-left: 5px; /* Piccolo scivolamento a destra al passaggio del mouse */
+        }
+    </style>
 </head>
 <body>
     <div id="header-container"></div>
@@ -13,7 +46,52 @@
         <div id="sidebar-container"></div>
 
         <main class="content">
+            <h1>Oggetti e Abilità Uniche</h1>
+            <p>Qui troverete una lista di tuttigli oggetti speciali, la magia peculiare e i rituali appresi durante la permanenza alla Magaambya.</p>
             
+            <hr>
+
+            <!--<h2 id="masks">Maschere</h2>
+            <p>Uno dei benefici garantiti agli <em>Attendenti</em> a pieno titolo è il diritto di indossare una maschera Magaambyana, o di far riconoscere la propria maschera personale dalla Magaambya. La tradizione impone che queste creazioni siano intagliate a forma di animale. Man mano che un mago continua a indossare la maschera, l'oggetto acquisisce gradualmente un'impronta del vero volto spirituale del suo proprietario. Oltre a plasmare le loro maschere in famigli, i Magaambyani spesso applicano incantamenti utili alle loro maschere per aiutarsi nelle imprese più pericolose.</p>
+            
+            <ul class="item-list">
+                <li><a href="https://2e.aonprd.com/Equipment.aspx?ID=960" target="_blank">Goz mask</a></li>
+                <li><a href="https://2e.aonprd.com/Equipment.aspx?ID=965" target="_blank">Rhino mask</a></li>
+                <li><a href="https://2e.aonprd.com/Equipment.aspx?ID=963" target="_blank">Mask of mercy</a></li>
+                <li><a href="https://2e.aonprd.com/Equipment.aspx?ID=964" target="_blank">Psychopomp Mask</a></li>
+                <li><a href="https://2e.aonprd.com/Equipment.aspx?ID=966" target="_blank">Shapespeak Mask</a></li>
+                <li><a href="https://2e.aonprd.com/Equipment.aspx?ID=967" target="_blank">Skittering Mask</a></li>
+                <li><a href="https://2e.aonprd.com/Equipment.aspx?ID=968" target="_blank">Tlil Mask</a></li>
+                <li><a href="https://2e.aonprd.com/Equipment.aspx?ID=962" target="_blank">Mask of the Cursed Eye</a></li>
+                <li><a href="https://2e.aonprd.com/Equipment.aspx?ID=961" target="_blank">Herd Mask</a></li>
+            </ul>
+            -->
+            <!--<br><hr><br>-->
+
+            <h2 id="specialty-magic">Specialità degli Studenti</h2>
+            <p>Gli studenti del Dormitorio della Guglia possono insegnare ai propri compagni e amici i loro incantesimi o ricette uniche.</p>
+
+            <ul class="item-list">
+                <li><a href="https://2e.aonprd.com/Spells.aspx?ID=854" target="_blank">Mariama's Stumbling Curse</a></li>
+                <li><a href="https://2e.aonprd.com/Equipment.aspx?ID=970" target="_blank">Root's Rhythm Bone</a></li>
+                <li><a href="https://2e.aonprd.com/Spells.aspx?ID=856" target="_blank">Esi's Impeccable Flow</a></li>
+                <li><a href="https://2e.aonprd.com/Spells.aspx?ID=857" target="_blank">Haibram's Air Burst</a></li>
+                <li><a href="https://2e.aonprd.com/Spells.aspx?ID=858" target="_blank">Noxolo's Grave Impressions</a></li>
+                <li><a href="https://2e.aonprd.com/Spells.aspx?ID=859" target="_blank">Okoro's Mind Games</a></li>
+                <li><a href="https://2e.aonprd.com/Spells.aspx?ID=860" target="_blank">Tzeniwe's Friendfetch</a></li>
+            </ul>
+
+            <br><hr><br>
+
+            <h2 id="magaambyas-rituals">Rituali della Magaambya</h2>
+            <p>Qui verranno raccolti i rituali appresi durante la permanenza alla Magaambya.</p>
+
+            <ul class="item-list">
+                <li><a href="https://2e.aonprd.com/Rituals.aspx?ID=50" target="_blank">Fey Abeyance</a></li>
+                <li><a href="https://2e.aonprd.com/Rituals.aspx?ID=51" target="_blank">Tattoo Whispers</a></li>
+                <li><a href="https://2e.aonprd.com/Rituals.aspx?ID=68" target="_blank">Community Repair</a></li>
+            </ul>
+
         </main>
     </div>
 
@@ -56,9 +134,7 @@
             });
         }
 
-        // Inizializza l'effetto Lightbox (Schermo intero per le immagini)
         function initLightbox() {
-            // 1. Crea la struttura HTML del lightbox e la aggiunge alla fine della pagina
             if (!document.querySelector('.lightbox')) {
                 const lightboxHTML = `
                     <div class="lightbox">
@@ -74,25 +150,20 @@
             const lightbox = document.querySelector('.lightbox');
             const lightboxImg = lightbox.querySelector('img');
             const closeBtn = document.querySelector('.lightbox-close');
-
-            // 2. Seleziona tutte le immagini dentro l'area principale
             const images = document.querySelectorAll('.content img');
 
-            // 3. Rende le immagini cliccabili e le apre nel lightbox
             images.forEach(img => {
-                img.style.cursor = 'pointer'; // Cambia il cursore in una manina
+                img.style.cursor = 'pointer';
                 img.addEventListener('click', function() {
-                    lightboxImg.src = this.src; // Copia l'indirizzo dell'immagine cliccata
-                    lightbox.classList.add('active'); // Mostra il lightbox
+                    lightboxImg.src = this.src;
+                    lightbox.classList.add('active');
                 });
             });
 
-            // 4. Chiude il lightbox cliccando sulla "X"
             closeBtn.addEventListener('click', () => {
                 lightbox.classList.remove('active');
             });
 
-            // 5. Chiude il lightbox se si clicca sullo sfondo scuro
             lightbox.addEventListener('click', (e) => {
                 if (e.target === lightbox || e.target === lightbox.querySelector('.lightbox-content')) {
                     lightbox.classList.remove('active');
@@ -100,23 +171,17 @@
             });
         }
 
-        // Script di caricamento corretto senza .then() spezzati
         Promise.all([
             fetch('header.html').then(r => r.text()),
             fetch('sidebar.html').then(r => r.text())
         ]).then(([headerHTML, sidebarHTML]) => {
             document.getElementById('header-container').innerHTML = headerHTML;
             document.getElementById('sidebar-container').innerHTML = sidebarHTML;
-            
-            // Avvia tutte le funzioni necessarie
             initHeader();
             initSidebar();
-            initLightbox(); // <--- AGGIUNGI QUESTA RIGA QUI
-            
-            // Su calendar.html ci sarà anche initCalendar();
-            
+            initLightbox();
         }).catch(error => {
-            console.error("Errore nel caricamento dei file esterni:", error);
+            console.error("Errore nel caricamento dell'interfaccia:", error);
         });
     </script>
 </body>
