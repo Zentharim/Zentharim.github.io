@@ -312,3 +312,90 @@ hr {
     background-color: #4caf50; /* Verde per le note dei giocatori */
     color: white;
 }
+
+/* =========================================
+   STILI PER LE SCHEDE EROE (CARDS)
+   ========================================= */
+
+/* Griglia automatica e responsiva */
+.hero-grid {
+    display: grid;
+    /* Crea colonne larghe minimo 280px. Se c'è spazio, ne affianca di più! */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Stile base della carta */
+.hero-card {
+    background-color: var(--bg-card);
+    border-radius: var(--radius);
+    overflow: hidden; /* Fa sì che l'immagine segua i bordi arrotondati della carta */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid rgba(74, 20, 140, 0.08); /* Bordo leggerissimo violaceo */
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Effetto al passaggio del mouse (Floating Card) */
+.hero-card:hover {
+    transform: translateY(-8px); /* Si alza leggermente */
+    box-shadow: 0 15px 35px rgba(74, 20, 140, 0.15); /* Ombra viola accentuata */
+}
+
+/* Contenitore Immagine */
+.hero-img-container {
+    width: 100%;
+    height: 240px; /* Altezza fissa per uniformare le foto */
+    background-color: #f8f9fa;
+}
+
+.hero-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Taglia l'immagine in eccesso senza deformarla */
+    margin: 0; /* Rimuove i margini di default delle immagini nel content */
+    border-radius: 0; /* Annulla il radius globale delle immagini per farlo combaciare col bordo superiore della card */
+    border-bottom: 4px solid var(--accent); /* Striscia dorata sotto la foto */
+}
+
+/* Info testuali sotto l'immagine */
+.hero-info {
+    padding: 25px;
+    flex-grow: 1; /* Spinge il contenuto per riempire la carta in altezza */
+}
+
+.hero-info h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    border-bottom: 2px solid rgba(74, 20, 140, 0.1);
+    padding-bottom: 10px;
+}
+
+/* Lista dei Tratti dell'Eroe */
+.hero-traits {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.hero-traits li {
+    margin-bottom: 12px;
+    padding-left: 22px;
+    position: relative;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Trasforma i normali pallini della lista in stelline magiche dorate */
+.hero-traits li::before {
+    content: '✦'; 
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.1rem;
+}
