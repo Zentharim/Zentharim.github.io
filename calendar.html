@@ -246,5 +246,63 @@
 
         </main>
     </div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Seleziona tutte le celle dei giorni del calendario
+        const cells = document.querySelectorAll(".calendar-table td");
+
+        cells.forEach((cell, index) => {
+            // Creiamo un ID univoco per ogni cella in base alla sua posizione
+            // (Questo serve al browser per ricordarsi in quale giorno hai scritto la nota)
+            const cellId = "calendario-giorno-" + index;
+
+            // 1. CARICAMENTO: Controlla se c'è già un evento salvato per questo giorno
+            const savedEvent = localStorage.getItem(cellId);
+            if (savedEvent) {
+                let eventSpan = document.createElement('span');
+                eventSpan.className = 'event user-event';
+                eventSpan.innerText = savedEvent;
+                cell.classList.add('has-event');
+                cell.appendChild(eventSpan);
+            }
+
+            // 2. INTERAZIONE: Cosa succede quando si clicca su un giorno
+            cell.addEventListener("click", function(e) {
+                // Cerca se c'è già un evento personalizzato in questa cella
+                const existingUserEvent = this.querySelector('.user-event');
+                const currentText = existingUserEvent ? existingUserEvent.innerText : "";
+                
+                // Mostra una finestra di dialogo per inserire o modificare la nota
+                const nota = prompt("Aggiungi o modifica un evento per questo giorno (lascia vuoto per eliminare):", currentText);
+                
+                if (nota !== null) { // Se l'utente non ha premuto "Annulla"
+                    if (nota.trim() === "") {
+                        // Se ha lasciato vuoto, elimina l'evento
+                        if (existingUserEvent) existingUserEvent.remove();
+                        localStorage.removeItem(cellId); // Rimuove dalla memoria
+                        
+                        // Rimuove lo sfondo colorato se non ci sono altri eventi (es. quelli ufficiali)
+                        if (!this.querySelector('.event')) {
+                            this.classList.remove('has-event');
+                        }
+                    } else {
+                        // Se ha scritto qualcosa, aggiungi o aggiorna l'evento
+                        if (existingUserEvent) {
+                            existingUserEvent.innerText = nota;
+                        } else {
+                            let newEvent = document.createElement('span');
+                            newEvent.className = 'event user-event';
+                            newEvent.innerText = nota;
+                            this.classList.add('has-event');
+                            this.appendChild(newEvent);
+                        }
+                        // Salva la nota nella memoria del browser
+                        localStorage.setItem(cellId, nota);
+                    }
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
