@@ -242,75 +242,86 @@ hr {
     transform: translateY(-50%) scale(1);
 }
 
-/* Stili per il Calendario */
+/* =========================================
+   STILI PER IL CALENDARIO (Nuova Versione)
+   ========================================= */
+
 .calendar-table {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 40px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border-collapse: separate; /* Cambiato da collapse per permettere bordi arrotondati */
+    border-spacing: 0;
+    margin-bottom: 50px;
+    background-color: var(--bg-card);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(74, 20, 140, 0.08);
 }
 
 .calendar-table th, .calendar-table td {
-    border: 1px solid #e0e0e0;
-    padding: 10px;
+    border-right: 1px solid rgba(74, 20, 140, 0.08);
+    border-bottom: 1px solid rgba(74, 20, 140, 0.08);
+    padding: 12px;
     text-align: left;
     vertical-align: top;
-    width: 14.28%; /* Divide lo spazio equamente per i 7 giorni */
+    width: 14.28%;
+}
+
+/* Rimuove i bordi doppi a destra e in basso */
+.calendar-table th:last-child, .calendar-table td:last-child {
+    border-right: none;
+}
+.calendar-table tr:last-child td {
+    border-bottom: none;
 }
 
 .calendar-table th {
-    background-color: #6200ea;
-    color: white;
-    font-weight: normal;
-    font-size: 0.9rem;
+    background-color: rgba(74, 20, 140, 0.05); /* Sfondo testata molto leggero */
+    color: var(--primary);
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    font-size: 0.95rem;
     text-align: center;
+    padding: 15px 10px;
 }
 
 .calendar-table td {
-    height: 80px; /* Altezza fissa per dare spazio agli eventi */
-    font-weight: bold;
-    color: #555;
+    height: 90px;
+    font-weight: 500;
+    color: var(--text-muted);
     position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .calendar-table td:hover {
-    background-color: #f9f9f9;
+    background-color: rgba(74, 20, 140, 0.03); /* Hover leggerissimo */
 }
 
-/* Stile per i giorni con eventi */
+/* Giorno con eventi di trama (Ufficiali) */
 .calendar-table td.has-event {
-    background-color: #ede7f6; /* Sfondo leggermente viola per evidenziare */
+    background-color: rgba(255, 179, 0, 0.08); /* Sfondo giallino tenue */
 }
 
-/* Stile per il testo dell'evento */
+/* Etichetta evento Ufficiale */
 .calendar-table .event {
     display: block;
     margin-top: 8px;
-    font-size: 0.8rem;
-    font-weight: normal;
-    background-color: #ffb300; /* Giallo dorato per gli eventi */
-    color: #333;
-    padding: 3px 6px;
-    border-radius: 4px;
-    line-height: 1.2;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background-color: var(--accent);
+    color: #4A148C; /* Testo viola scuro su sfondo oro */
+    padding: 4px 8px;
+    border-radius: 6px;
+    line-height: 1.3;
+    box-shadow: 0 2px 5px rgba(255, 179, 0, 0.3);
 }
 
-/* Rende le celle cliccabili */
-.calendar-table td {
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-/* Colore al passaggio del mouse per far capire che si può cliccare */
-.calendar-table td:hover {
-    background-color: #e8f5e9; 
-}
-
-/* Stile per gli eventi personalizzati aggiunti dagli utenti */
+/* Etichetta evento Giocatore (Aggiunto a mano) */
 .calendar-table .event.user-event {
-    background-color: #4caf50; /* Verde per le note dei giocatori */
+    background-color: var(--primary-light);
     color: white;
+    box-shadow: 0 2px 5px rgba(123, 31, 162, 0.3);
 }
 
 /* =========================================
