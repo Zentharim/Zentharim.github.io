@@ -494,13 +494,13 @@ details.month-details > .calendar-table {
    STILI PER LA SIDEBAR - PRIMO LIVELLO
    ========================================= */
 
-/* Aspetto di base per tutti i bottoni principali (Sfondo chiaro) */
+/* Tutti i bottoni principali (Sfondo viola di default, compresi i menu a tendina) */
 .sidebar > ul > li > a, 
 .sidebar > ul > li > .menu-toggle {
-    background-color: var(--bg-card); /* Sfondo bianco/chiaro */
-    color: var(--text-main);
-    font-weight: 500;
-    border-left: 4px solid transparent; /* Bordo trasparente di base */
+    background-color: rgba(74, 20, 140, 0.1); /* Sfondo viola sempre attivo */
+    color: var(--primary);
+    font-weight: bold;
+    border-left: 4px solid var(--primary); /* Riga laterale sempre attiva */
     border-radius: 8px;
     padding: 10px 14px;
     margin-bottom: 8px;
@@ -508,23 +508,13 @@ details.month-details > .calendar-table {
     text-decoration: none;
     transition: all 0.2s ease;
     cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 }
 
-/* Effetto al passaggio del mouse o quando il menu a tendina viene aperto */
+/* Effetto al passaggio del mouse (diventa leggermente più scuro) */
 .sidebar > ul > li > a:hover, 
 .sidebar > ul > li > .menu-toggle:hover {
-    background-color: rgba(74, 20, 140, 0.05); /* Viola chiarissimo */
-    color: var(--primary);
+    background-color: rgba(74, 20, 140, 0.18); 
     transform: translateX(4px);
-}
-
-/* STATO ATTIVO: Questo è il vero blocco viola con la linea marcata (es. Home) */
-.sidebar > ul > li > a.active {
-    background-color: rgba(74, 20, 140, 0.1); /* Sfondo viola evidente */
-    color: var(--primary);
-    font-weight: bold;
-    border-left: 4px solid var(--primary); /* Linea viola spessa */
 }
 
 /* =========================================
@@ -536,18 +526,17 @@ details.month-details > .calendar-table {
     display: none;
     margin-top: 5px;
     margin-bottom: 5px;
-    padding-left: 15px;      /* Spazio interno rispetto alla linea */
-    margin-left: 12px;       /* Rientro da sinistra */
-    border-left: 2px solid rgba(74, 20, 140, 0.15); /* Linea verticale elegante viola chiaro */
+    padding-left: 15px;      
+    margin-left: 12px;       
+    border-left: 2px solid rgba(74, 20, 140, 0.15); 
 }
 
-/* Animazione fluida quando il menu viene aperto tramite JavaScript */
+/* Animazione fluida quando apri il sottomenu */
 .submenu.aperto {
     display: block;
     animation: fadeInDown 0.3s ease-out forwards;
 }
 
-/* Animazione per far scorrere morbidamente il testo verso il basso */
 @keyframes fadeInDown {
     from {
         opacity: 0;
@@ -562,26 +551,25 @@ details.month-details > .calendar-table {
 /* Voci dentro ai sottomenu: testo semplice e leggero */
 .sidebar .submenu a, 
 .sidebar .submenu .menu-toggle {
-    background-color: transparent;
+    background-color: transparent; /* I sottomenu restano senza sfondo */
     color: var(--text-muted);
     font-size: 0.95rem;
     font-weight: 400;
     border-left: none; /* Nessun bordo spesso */
     padding: 8px 12px;
     margin-bottom: 0;
-    box-shadow: none;
     position: relative;
 }
 
-/* Puntino dorato decorativo che appare al passaggio del mouse sui link finali */
+/* Puntino dorato decorativo per i link finali */
 .submenu a::before {
     content: '';
     width: 6px;
     height: 6px;
-    background-color: var(--accent); /* Colore dorato */
+    background-color: var(--accent); 
     border-radius: 50%;
     position: absolute;
-    left: -20px; /* Posizionato sulla linea guida */
+    left: -20px; 
     top: 50%;
     transform: translateY(-50%) scale(0);
     transition: all 0.2s ease;
@@ -596,11 +584,9 @@ details.month-details > .calendar-table {
     font-weight: 500;
 }
 
-/* Attiva il puntino dorato solo per i link finali cliccabili */
 .submenu a:hover::before {
     transform: translateY(-50%) scale(1);
 }
-
 /* Voci dentro ai sottomenu: leggermente più piccole per dare gerarchia */
 .submenu a, .submenu .menu-toggle {
     font-size: 0.95rem;
