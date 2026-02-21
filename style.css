@@ -202,3 +202,20 @@ hr {
     border-radius: 4px;
     line-height: 1.2;
 }
+
+/* Rende le celle cliccabili */
+.calendar-table td {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* Colore al passaggio del mouse per far capire che si può cliccare */
+.calendar-table td:hover {
+    background-color: #e8f5e9; 
+}
+
+/* Stile per gli eventi personalizzati aggiunti dagli utenti */
+.calendar-table .event.user-event {
+    background-color: #4caf50; /* Verde per le note dei giocatori */
+    color: white;
+}
