@@ -1,53 +1,88 @@
+/* 1. IMPORTA I NUOVI FONT */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lora:ital,wght@0,500;0,700;1,400&display=swap');
+
+/* 2. VARIABILI DI COLORE (Moderne e facili da gestire) */
+:root {
+    --primary: #4A148C;      /* Viola Magaambya */
+    --primary-light: #7B1FA2;
+    --accent: #FFB300;       /* Oro/Ambra */
+    --bg-page: #f0f2f5;      /* Grigio chiarissimo per lo sfondo */
+    --bg-card: #ffffff;      /* Bianco puro per i contenuti */
+    --text-main: #2c3e50;
+    --text-muted: #546e7a;
+    --radius: 12px;          /* Bordi più arrotondati */
+    --shadow: 0 8px 30px rgba(0,0,0,0.04); /* Ombra morbida e moderna */
+}
+
 /* Stili di base */
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    line-height: 1.6;
 }
 
-/* Barra superiore */
+h1, h2, h3, h4 {
+    font-family: 'Lora', serif;
+    color: var(--primary);
+}
+
+/* Barra superiore con Gradiente */
 .topbar {
-    background-color: #6200ea; /* Colore viola stile MkDocs Material */
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
     color: white;
-    padding: 10px 20px;
+    padding: 12px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: 0 4px 12px rgba(74, 20, 140, 0.2);
 }
 
 .topbar .logo {
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 1.4rem;
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .search-bar {
-    padding: 6px 12px;
-    border-radius: 4px;
+    padding: 8px 16px;
+    border-radius: 20px; /* Ricerca a pillola, molto moderna */
     border: none;
     outline: none;
-    width: 200px;
+    width: 250px;
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
 }
 
-/* Layout a griglia */
+.search-bar:focus {
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(255, 179, 0, 0.5); /* Glow dorato */
+}
+
+/* Layout a griglia con spaziature migliori */
 .container {
     display: flex;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1300px;
+    margin: 30px auto;
+    gap: 30px; /* Spazio tra sidebar e contenuto */
+    padding: 0 20px;
 }
 
-/* Sidebar di sinistra */
+/* Sidebar rialzata (stile Card) */
 .sidebar {
-    width: 250px;
-    background-color: #ffffff;
-    padding: 20px;
-    height: calc(100vh - 60px);
+    width: 260px;
+    background-color: var(--bg-card);
+    padding: 25px 20px;
+    border-radius: var(--radius);
+    height: max-content;
     position: sticky;
-    top: 55px; /* altezza della topbar */
-    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    top: 90px; 
+    box-shadow: var(--shadow);
 }
 
 .sidebar ul {
@@ -57,54 +92,68 @@ body {
 }
 
 .sidebar li {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
-.sidebar a {
+.sidebar a, .menu-toggle {
     text-decoration: none;
-    color: #555;
+    color: var(--text-muted);
     font-weight: 500;
     display: block;
-    padding: 10px;
-    border-radius: 4px;
-    transition: background 0.2s;
+    padding: 10px 14px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
 
-.sidebar a:hover, .sidebar a.active {
-    background-color: #ede7f6;
-    color: #6200ea;
+.sidebar a:hover, .menu-toggle:hover {
+    background-color: rgba(74, 20, 140, 0.05);
+    color: var(--primary);
+    transform: translateX(4px); /* Piccolo e stiloso scivolamento a destra */
 }
 
-/* Area Contenuti */
+.sidebar a.active {
+    background-color: rgba(74, 20, 140, 0.1);
+    color: var(--primary);
+    font-weight: bold;
+    border-left: 4px solid var(--primary);
+}
+
+/* Area Contenuti rialzata (stile Card) */
 .content {
     flex-grow: 1;
-    background-color: #ffffff;
-    padding: 40px;
-    min-height: 100vh;
+    background-color: var(--bg-card);
+    padding: 50px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    min-height: 80vh;
 }
 
+/* Immagini più belle */
 .content img {
     max-width: 100%;
-    border-radius: 4px;
-    margin: 15px 0;
+    border-radius: var(--radius);
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* Stile per le citazioni storiche */
+/* Stile per le citazioni storiche o le descrizioni */
 blockquote {
-    border-left: 4px solid #6200ea;
-    margin: 20px 0;
-    color: #555;
+    border-left: 4px solid var(--accent);
+    margin: 30px 0;
+    color: var(--text-muted);
     font-style: italic;
-    background-color: #fafafa;
-    padding: 15px;
-    border-radius: 0 4px 4px 0;
+    background-color: rgba(255, 179, 0, 0.05);
+    padding: 20px 25px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: 1.05rem;
 }
 
 hr {
     border: 0;
     height: 1px;
-    background: #e0e0e0;
-    margin: 40px 0;
+    background: linear-gradient(to right, transparent, #e0e0e0, transparent);
+    margin: 50px 0;
 }
 
 /* Responsività per smartphone */
