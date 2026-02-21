@@ -148,3 +148,57 @@ hr {
 .menu-toggle:hover {
     background-color: #ede7f6;
 }
+
+/* Stili per il Calendario */
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.calendar-table th, .calendar-table td {
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+    width: 14.28%; /* Divide lo spazio equamente per i 7 giorni */
+}
+
+.calendar-table th {
+    background-color: #6200ea;
+    color: white;
+    font-weight: normal;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.calendar-table td {
+    height: 80px; /* Altezza fissa per dare spazio agli eventi */
+    font-weight: bold;
+    color: #555;
+    position: relative;
+}
+
+.calendar-table td:hover {
+    background-color: #f9f9f9;
+}
+
+/* Stile per i giorni con eventi */
+.calendar-table td.has-event {
+    background-color: #ede7f6; /* Sfondo leggermente viola per evidenziare */
+}
+
+/* Stile per il testo dell'evento */
+.calendar-table .event {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.8rem;
+    font-weight: normal;
+    background-color: #ffb300; /* Giallo dorato per gli eventi */
+    color: #333;
+    padding: 3px 6px;
+    border-radius: 4px;
+    line-height: 1.2;
+}
