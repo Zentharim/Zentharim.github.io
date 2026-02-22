@@ -32,56 +32,6 @@
             <hr>
         </main>
     </div>
-
-    <script>
-        function initHeader() {
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                searchInput.addEventListener('input', function() {
-                    const query = this.value.toLowerCase();
-                    const items = document.querySelectorAll('.sidebar li');
-                    items.forEach(li => {
-                        const text = li.textContent.trim().toLowerCase();
-                        if (text.includes(query)) {
-                            li.style.display = '';
-                            let parent = li.parentElement;
-                            while (parent && parent.classList.contains('submenu')) {
-                                parent.style.display = 'block';
-                                parent = parent.parentElement.closest('li');
-                            }
-                        } else {
-                            li.style.display = 'none';
-                        }
-                    });
-                });
-            }
-        }
-
-        function initSidebar() {
-            const toggles = document.querySelectorAll('.menu-toggle');
-            toggles.forEach(toggle => {
-                // Pulizia magica: rimuove le vecchie frecce testuali se sono scritte nell'HTML
-                toggle.innerHTML = toggle.innerHTML.replace('▼', '').replace('▲', '').trim();
-
-                toggle.addEventListener('click', function() {
-                    const sottomenu = this.nextElementSibling;
-                    sottomenu.classList.toggle('aperto');
-                    
-                    // Aggiungiamo la classe 'aperto' anche al bottone stesso per animarlo col CSS!
-                    this.classList.toggle('aperto'); 
-                });
-            });
-        }
-
-        Promise.all([
-            fetch('header.html').then(r => r.text()),
-            fetch('sidebar.html').then(r => r.text())
-        ]).then(([headerHTML, sidebarHTML]) => {
-            document.getElementById('header-container').innerHTML = headerHTML;
-            document.getElementById('sidebar-container').innerHTML = sidebarHTML;
-            initHeader();
-            initSidebar();
-        });
-    </script>
+    <script src="scripts.js"></script>  
 </body>
 </html>
