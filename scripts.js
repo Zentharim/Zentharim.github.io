@@ -3,7 +3,79 @@
 // ==========================================
 
 // 1. Ricerca nell'Header
+// 1. Ricerca nell'Header (Sidebar + Pagina Corrente + Auto-Scroll)
 function initHeader() {
+    const searchInput = document.getElementById('searchInput');
+    const contentArea = document.querySelector('.content');
+
+    if (!searchInput || !contentArea) return;
+
+    const originalContentHTML = contentArea.innerHTML;
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value.trim().toLowerCase();
+        
+        // --- PARTE A: Filtra la Sidebar ---
+        const items = document.querySelectorAll('.sidebar li');
+        items.forEach(li => {
+            const text = li.textContent.trim().toLowerCase();
+            if (query === "" || text.includes(query)) {
+                li.style.display = '';
+                let parent = li.parentElement;
+                while (parent && parent.classList.contains('submenu')) {
+                    if (query !== "") parent.style.display = 'block';
+                    parent = parent.parentElement.closest('li');
+                }
+            } else {
+                li.style.display = 'none';
+            }
+        });
+
+        // --- PARTE B: Evidenzia nella Pagina Corrente ---
+        contentArea.innerHTML = originalContentHTML;
+        
+        if (query === "") {
+            // Se la ricerca è vuota, torna in cima alla pagina
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+
+        const walker = document.createTreeWalker(contentArea, NodeFilter.SHOW_TEXT, null, false);
+        const textNodes = [];
+        let node;
+        while (node = walker.nextNode()) {
+            textNodes.push(node);
+        }
+
+        const escapeRegExp = string => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp("(" + escapeRegExp(query) + ")", "gi");
+
+        textNodes.forEach(textNode => {
+            const match = textNode.nodeValue.match(regex);
+            if (match) {
+                const span = document.createElement('span');
+                span.innerHTML = textNode.nodeValue.replace(
+                    regex, 
+                    // Aggiunta una classe "search-highlight" per trovarla facilmente
+                    '<mark class="search-highlight" style="background-color: rgba(255, 179, 0, 0.4); color: var(--primary); border-radius: 3px; padding: 0 2px;">$1</mark>'
+                );
+                textNode.parentNode.replaceChild(span, textNode);
+            }
+        });
+
+        // --- PARTE C: SCROLL AUTOMATICO ALLA PRIMA PAROLA ---
+        const firstHighlight = contentArea.querySelector('.search-highlight');
+        if (firstHighlight) {
+            // Scorre la pagina dolcemente posizionando la parola al centro dello schermo
+            firstHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        // --- PARTE D: Riattiva script ---
+        if (typeof initLightbox === "function") initLightbox();
+        if (typeof initCalendar === "function") initCalendar();
+    });
+}
+/*function initHeader() {
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
         searchInput.addEventListener('input', function() {
@@ -24,7 +96,7 @@ function initHeader() {
             });
         });
     }
-}
+}*/
 
 // 2. Menu a tendina della Sidebar
 function initSidebar() {
@@ -102,7 +174,7 @@ function initCalendar() {
                     
                     <div class="modal-buttons">
                         <button id="calendar-cancel" class="btn-secondary" style="margin-top: 0;">Annulla</button>
-                        <button id="calendar-save" class="btn-primary" style="padding: 8px 20px;">Salva Ricodo</button>
+                        <button id="calendar-save" class="btn-primary" style="padding: 8px 20px;">Salva Ricordo</button>
                     </div>
                     
                     <button id="calendar-delete" class="btn-delete-event">Cancella Ricodo</button>
