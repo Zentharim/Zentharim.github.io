@@ -2,111 +2,7 @@
 // FUNZIONI PRINCIPALI DEL SITO
 // ==========================================
 
-// 1. Ricerca nell'Header (Sidebar con dissolvenza + Pagina Corrente + Auto-Scroll)
 function initHeader() {
-    const searchInput = document.getElementById('searchInput');
-    const contentArea = document.querySelector('.content');
-
-    if (!searchInput || !contentArea) return;
-
-    const originalContentHTML = contentArea.innerHTML;
-
-    searchInput.addEventListener('input', function() {
-        const query = this.value.trim().toLowerCase();
-        
-        // --- PARTE A: Filtra la Sidebar (Effetto Sbiadito) ---
-        // Selezioniamo direttamente i link e i bottoni, non le righe (li) intere
-        const elements = document.querySelectorAll('.sidebar a, .sidebar .menu-toggle');
-        
-        if (query === "") {
-            // Se la ricerca è vuota, ripristina la visibilità di tutto
-            elements.forEach(el => {
-                el.style.opacity = '1';
-                el.style.filter = 'none';
-            });
-        } else {
-            // 1. Prima sbiadisce tutti gli elementi (opacità 35% e scala di grigi)
-            elements.forEach(el => {
-                el.style.opacity = '0.35';
-                el.style.filter = 'grayscale(100%)';
-                // Mantiene i vecchi display a blocchi per evitare che la sidebar si "chiuda"
-                el.parentElement.style.display = ''; 
-            });
-
-            // 2. Poi "illumina" solo quelli che corrispondono e i loro genitori
-            elements.forEach(el => {
-                const text = el.textContent.trim().toLowerCase();
-                
-                if (text.includes(query)) {
-                    // Accende l'elemento trovato
-                    el.style.opacity = '1';
-                    el.style.filter = 'none';
-
-                    // Risale l'albero per assicurarsi che tutti i sottomenu siano aperti
-                    // e che i "titoli" dei menu (es. "NPC") siano illuminati
-                    let currentSubmenu = el.closest('.submenu');
-                    while (currentSubmenu) {
-                        currentSubmenu.style.display = 'block'; // Apre la tendina
-                        
-                        let parentToggle = currentSubmenu.previousElementSibling;
-                        if (parentToggle && parentToggle.classList.contains('menu-toggle')) {
-                            // Illumina il genitore di questo sottomenu
-                            parentToggle.style.opacity = '1';
-                            parentToggle.style.filter = 'none';
-                            parentToggle.classList.add('aperto'); // Ruota la stellina
-                        }
-                        // Passa al sottomenu superiore (se esiste)
-                        currentSubmenu = currentSubmenu.parentElement.closest('.submenu');
-                    }
-                }
-            });
-        }
-
-        // --- PARTE B: Evidenzia nella Pagina Corrente ---
-        contentArea.innerHTML = originalContentHTML;
-        
-        if (query === "") {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            // Riattiva gli script
-            if (typeof initLightbox === "function") initLightbox();
-            if (typeof initCalendar === "function") initCalendar();
-            return;
-        }
-
-        const walker = document.createTreeWalker(contentArea, NodeFilter.SHOW_TEXT, null, false);
-        const textNodes = [];
-        let node;
-        while (node = walker.nextNode()) {
-            textNodes.push(node);
-        }
-
-        const escapeRegExp = string => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const regex = new RegExp("(" + escapeRegExp(query) + ")", "gi");
-
-        textNodes.forEach(textNode => {
-            const match = textNode.nodeValue.match(regex);
-            if (match) {
-                const span = document.createElement('span');
-                span.innerHTML = textNode.nodeValue.replace(
-                    regex, 
-                    '<mark class="search-highlight" style="background-color: rgba(255, 179, 0, 0.4); color: var(--primary); border-radius: 3px; padding: 0 2px;">$1</mark>'
-                );
-                textNode.parentNode.replaceChild(span, textNode);
-            }
-        });
-
-        // --- PARTE C: SCROLL AUTOMATICO ALLA PRIMA PAROLA ---
-        const firstHighlight = contentArea.querySelector('.search-highlight');
-        if (firstHighlight) {
-            firstHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        
-        // --- PARTE D: Riattiva script spezzati dal reset testuale ---
-        if (typeof initLightbox === "function") initLightbox();
-        if (typeof initCalendar === "function") initCalendar();
-    });
-}
-/*function initHeader() {
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
         searchInput.addEventListener('input', function() {
@@ -127,7 +23,7 @@ function initHeader() {
             });
         });
     }
-}*/
+}
 
 // 2. Menu a tendina della Sidebar
 function initSidebar() {
