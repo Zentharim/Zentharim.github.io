@@ -102,10 +102,10 @@ function initCalendar() {
                     
                     <div class="modal-buttons">
                         <button id="calendar-cancel" class="btn-secondary" style="margin-top: 0;">Annulla</button>
-                        <button id="calendar-save" class="btn-primary" style="padding: 8px 20px;">Salva Sigillo</button>
+                        <button id="calendar-save" class="btn-primary" style="padding: 8px 20px;">Salva Ricodo</button>
                     </div>
                     
-                    <button id="calendar-delete" class="btn-delete-event">Cancella memoria</button>
+                    <button id="calendar-delete" class="btn-delete-event">Cancella Ricodo</button>
                 </div>
             </div>
         `;

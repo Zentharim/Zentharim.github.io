@@ -746,12 +746,67 @@ details.month-details > .calendar-table {
     margin-top: 10px;
 }
 
-.btn-delete-event {
-    background: none;
-    border: none;
-    color: #d32f2f;
+
+.btn-primary, .btn-secondary {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 50px; /* Forma a pillola molto morbida */
     cursor: pointer;
-    text-decoration: underline;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Bottone d'azione principale (Salva, Conferma) */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 12px rgba(74, 20, 140, 0.25);
+}
+
+/* Magia dorata al passaggio del mouse */
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 179, 0, 0.4); /* Bagliore dorato */
+    border-color: var(--accent); /* Il bordo si accende d'oro */
+}
+
+/* Bottone secondario (Annulla, Chiudi) */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary);
+    border: 2px solid rgba(74, 20, 140, 0.3);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(74, 20, 140, 0.08); /* Sfondo viola leggerissimo */
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* Bottone per l'eliminazione (Ridisegnato come una piccola pillola) */
+.btn-delete-event {
+    background-color: transparent;
+    color: #d32f2f; /* Rosso tenue */
+    border: 1px solid rgba(211, 47, 47, 0.3);
+    padding: 8px 20px;
+    border-radius: 30px; /* Forma arrotondata */
+    font-family: 'Inter', sans-serif;
     font-size: 0.85rem;
-    margin-top: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 20px;
+    text-decoration: none; /* Tolta la sottolineatura stile link */
+}
+
+.btn-delete-event:hover {
+    background-color: #d32f2f;
+    color: white;
+    transform: scale(1.05); /* Si ingrandisce leggermente invece di alzarsi */
+    box-shadow: 0 4px 10px rgba(211, 47, 47, 0.2);
 }
