@@ -90,15 +90,30 @@
             border: 1px solid rgba(74, 20, 140, 0.2);
             border-radius: 8px;
             padding: 30px 20px;
-            font-family: 'Lora', serif;
-            font-size: 1.15rem;
-            line-height: 2em; /* Altezza interlinea perfetta per le righe */
+            
+            /* MODIFICA 1: Usiamo lo stesso font pulito del resto del sito */
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;       
+            line-height: 28px;     /* Altezza fissa e precisa per il testo */
+            
             color: var(--text-main);
             resize: vertical;
             outline: none;
             box-sizing: border-box;
-            /* Crea il bellissimo effetto delle righe del quaderno */
-            background-image: repeating-linear-gradient(transparent, transparent 31px, rgba(74, 20, 140, 0.15) 31px, rgba(74, 20, 140, 0.15) 32px);
+            
+            /* MODIFICA 2: Sincronizziamo il gradiente di sfondo con il line-height */
+            /* Il gradiente ripete ogni 28px. La linea è disegnata nell'ultimo pixel (da 27px a 28px) */
+            background-image: repeating-linear-gradient(
+                transparent, 
+                transparent 27px, 
+                rgba(74, 20, 140, 0.15) 27px, 
+                rgba(74, 20, 140, 0.15) 28px
+            );
+            
+            /* MODIFICA 3: Allinea l'inizio dello sfondo con l'inizio del padding */
+            /* Questo assicura che la prima riga di testo si poggi esattamente sulla prima riga disegnata */
+            background-attachment: local;
+            background-position: 0 4px; /* Un piccolo aggiustamento verticale per centrare le lettere sulla riga */
         }
 
         .diary-paper:focus {
