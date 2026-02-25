@@ -125,6 +125,39 @@ h1, h2, h3, h4 {
     box-shadow: none;
 }
 
+.sidebar {
+    width: 260px;
+    background-color: transparent;
+    padding: 30px 20px;
+    
+    max-height: calc(100vh - 120px); /* Altezza massima = altezza dello schermo meno l'header in alto */
+    overflow-y: auto; /* Abilita lo scroll interno se i link superano l'altezza */
+    overscroll-behavior: contain; /* Blocca l'effetto fastidioso: quando finisci di scorrere la sidebar, la pagina principale NON scrollerà per sbaglio */
+
+    border-radius: var(--radius);
+    border-right: 1px solid rgba(74, 20, 140, 0.1);
+    position: sticky;
+    top: 90px; 
+    box-shadow: none;
+}
+
+/* Stile speciale e sottile per la scrollbar interna della sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 5px; /* Molto più sottile di quella generale */
+}
+.sidebar::-webkit-scrollbar-track {
+    background-color: transparent;
+    border: none;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(74, 20, 140, 0.15); /* Viola traslucido */
+    border-radius: 10px;
+    border: none;
+}
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(74, 20, 140, 0.3); /* Si scurisce al passaggio del mouse */
+}
+
 .sidebar ul {
     list-style-type: none;
     padding: 0;
