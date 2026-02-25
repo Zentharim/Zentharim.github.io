@@ -83,17 +83,103 @@ function initLightbox() {
     });
 }
 
-// 4. Calendario Interattivo (Local Storage)
+// 4. Calendario Interattivo (Local Storage + Custom Modal)
 function initCalendar() {
     const cells = document.querySelectorAll(".calendar-table td");
     
     // Se non c'è nessun calendario sulla pagina, interrompi lo script
     if (cells.length === 0) return; 
 
+    // Crea l'HTML della nostra finestra personalizzata (se non esiste già)
+    if (!document.querySelector('.custom-modal-overlay')) {
+        const modalHTML = `
+            <div class="custom-modal-overlay" id="calendar-modal">
+                <div class="custom-modal-box">
+                    <h3>Appunti del Giorno</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Trascrivi o modifica le memorie per questa data.</p>
+                    
+                    <input type="text" id="calendar-input" class="modal-input" placeholder="Scrivi qui l'evento..." autocomplete="off">
+                    
+                    <div class="modal-buttons">
+                        <button id="calendar-cancel" class="btn-secondary" style="margin-top: 0;">Annulla</button>
+                        <button id="calendar-save" class="btn-primary" style="padding: 8px 20px;">Salva Sigillo</button>
+                    </div>
+                    
+                    <button id="calendar-delete" class="btn-delete-event">Cancella memoria</button>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+    }
+
+    const modal = document.getElementById('calendar-modal');
+    const input = document.getElementById('calendar-input');
+    const btnSave = document.getElementById('calendar-save');
+    const btnCancel = document.getElementById('calendar-cancel');
+    const btnDelete = document.getElementById('calendar-delete');
+
+    let currentCell = null;
+    let currentCellId = null;
+
+    // Funzione per chiudere la finestra
+    function closeModal() {
+        modal.style.display = 'none';
+        input.value = '';
+        currentCell = null;
+        currentCellId = null;
+    }
+
+    // Eventi dei pulsanti della finestra
+    btnCancel.addEventListener('click', closeModal);
+
+    btnSave.addEventListener('click', function() {
+        const nota = input.value.trim();
+        const existingUserEvent = currentCell.querySelector('.user-event');
+
+        if (nota === "") {
+            // Se si salva vuoto, equivale a eliminare
+            if (existingUserEvent) existingUserEvent.remove();
+            localStorage.removeItem(currentCellId); 
+            if (!currentCell.querySelector('.event')) {
+                currentCell.classList.remove('has-event');
+            }
+        } else {
+            // Salva la nuova nota
+            if (existingUserEvent) {
+                existingUserEvent.innerText = nota;
+            } else {
+                let newEvent = document.createElement('span');
+                newEvent.className = 'event user-event';
+                newEvent.innerText = nota;
+                currentCell.classList.add('has-event');
+                currentCell.appendChild(newEvent);
+            }
+            localStorage.setItem(currentCellId, nota);
+        }
+        closeModal();
+    });
+
+    btnDelete.addEventListener('click', function() {
+        const existingUserEvent = currentCell.querySelector('.user-event');
+        if (existingUserEvent) existingUserEvent.remove();
+        localStorage.removeItem(currentCellId); 
+        if (!currentCell.querySelector('.event')) {
+            currentCell.classList.remove('has-event');
+        }
+        closeModal();
+    });
+
+    // Permette di salvare premendo Invio sulla tastiera
+    input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') btnSave.click();
+    });
+
+    // Inizializza le celle al caricamento
     cells.forEach((cell, index) => {
         const cellId = "calendario-giorno-" + index;
         const savedEvent = localStorage.getItem(cellId);
         
+        // Ripristina note salvate
         if (savedEvent) {
             let eventSpan = document.createElement('span');
             eventSpan.className = 'event user-event';
@@ -102,32 +188,19 @@ function initCalendar() {
             cell.appendChild(eventSpan);
         }
 
-        cell.addEventListener("click", function(e) {
+        // Click sulla cella del calendario
+        cell.addEventListener("click", function() {
+            currentCell = this;
+            currentCellId = cellId;
+
             const existingUserEvent = this.querySelector('.user-event');
-            const currentText = existingUserEvent ? existingUserEvent.innerText : "";
             
-            const nota = prompt("Aggiungi o modifica un evento (lascia vuoto per eliminare):", currentText);
+            // Popola il campo con l'evento esistente (se c'è)
+            input.value = existingUserEvent ? existingUserEvent.innerText : "";
             
-            if (nota !== null) { 
-                if (nota.trim() === "") {
-                    if (existingUserEvent) existingUserEvent.remove();
-                    localStorage.removeItem(cellId); 
-                    if (!this.querySelector('.event')) {
-                        this.classList.remove('has-event');
-                    }
-                } else {
-                    if (existingUserEvent) {
-                        existingUserEvent.innerText = nota;
-                    } else {
-                        let newEvent = document.createElement('span');
-                        newEvent.className = 'event user-event';
-                        newEvent.innerText = nota;
-                        this.classList.add('has-event');
-                        this.appendChild(newEvent);
-                    }
-                    localStorage.setItem(cellId, nota);
-                }
-            }
+            // Mostra la finestra a tema
+            modal.style.display = 'flex';
+            input.focus(); // Seleziona subito la casella di testo
         });
     });
 }

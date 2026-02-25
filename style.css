@@ -684,3 +684,74 @@ details.month-details > .calendar-table {
     transform: translateX(5px);
     font-weight: 500;
 }
+
+/* =========================================
+   STILI PER LA FINESTRA EVENTI CALENDARIO
+   ========================================= */
+
+.custom-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Sfondo scuro semi-trasparente */
+    z-index: 2000; /* Deve stare sopra tutto il resto */
+    display: none; /* Nascosto di default */
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.2s ease;
+}
+
+.custom-modal-box {
+    background-color: var(--bg-card); /* Colore pergamena */
+    /* Ripetiamo la texture per farla sembrare un foglietto */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%234a148c' fill-opacity='0.04' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    border: 1px solid rgba(74, 20, 140, 0.1);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.custom-modal-box h3 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    color: var(--primary);
+}
+
+.modal-input {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 8px;
+    border: 1px solid rgba(74, 20, 140, 0.2);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    background-color: rgba(255,255,255,0.6); /* Leggermente bianco per spiccare sulla pergamena */
+    box-sizing: border-box;
+    outline: none;
+}
+
+.modal-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(74, 20, 140, 0.1);
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.btn-delete-event {
+    background: none;
+    border: none;
+    color: #d32f2f;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.85rem;
+    margin-top: 15px;
+}
