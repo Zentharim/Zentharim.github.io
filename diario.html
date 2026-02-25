@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Diari - Strength of Thousands</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Stili specifici per il layout del Diario */
+        .diary-box {
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid rgba(74, 20, 140, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Griglia dei pulsanti per i personaggi */
+        .char-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .btn-char {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-family: 'Lora', serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 140px;
+        }
+
+        .btn-char:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(74, 20, 140, 0.2);
+        }
+
+        /* Bottoni standard (Salva, Chiudi) */
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--text-muted);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(0,0,0,0.05);
+            color: var(--text-main);
+        }
+
+        /* Stile del foglio del diario (a righe) */
+        .diary-paper {
+            width: 100%;
+            height: 60vh;
+            background-color: transparent;
+            border: 1px solid rgba(74, 20, 140, 0.2);
+            border-radius: 8px;
+            padding: 30px 20px;
+            font-family: 'Lora', serif;
+            font-size: 1.15rem;
+            line-height: 2em; /* Altezza interlinea perfetta per le righe */
+            color: var(--text-main);
+            resize: vertical;
+            outline: none;
+            box-sizing: border-box;
+            /* Crea il bellissimo effetto delle righe del quaderno */
+            background-image: repeating-linear-gradient(transparent, transparent 31px, rgba(74, 20, 140, 0.15) 31px, rgba(74, 20, 140, 0.15) 32px);
+        }
+
+        .diary-paper:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(74, 20, 140, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <div class="container">
+        <div id="sidebar-container"></div>
+
+        <main class="content">
+            <h1>Archivio Privato</h1>
+            <p>I pensieri, i segreti e le scoperte degli studenti, registrati durante i loro studi alla Magaambya.</p>
+            <hr>
+
+            <div id="selection-section" class="diary-box">
+                <h2>Di chi è questo diario?</h2>
+                <p style="color: var(--text-muted);">Seleziona il tuo personaggio per aprire le tue memorie. <br><small><em>(I dati vengono salvati localmente sul browser che stai utilizzando)</em></small></p>
+                
+                <div class="char-buttons">
+                    <button class="btn-char" data-char="any">Any</button>
+                    <button class="btn-char" data-char="irus">Irus</button>
+                </div>
+            </div>
+
+            <div id="diary-section" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 id="diary-owner-name" style="margin: 0;">Diario di...</h2>
+                    <span id="save-status" style="color: var(--primary); font-weight: bold; opacity: 0; transition: opacity 0.3s;">Salvato! ✔️</span>
+                </div>
+                
+                <textarea id="diary-text" class="diary-paper" placeholder="Inizia a scrivere qui le tue memorie..."></textarea>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                    <button id="logout-btn" class="btn-secondary">← Chiudi Diario</button>
+                    <button id="save-btn" class="btn-primary">Salva Memorie</button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="scripts.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const selectionSection = document.getElementById('selection-section');
+            const diarySection = document.getElementById('diary-section');
+            const charButtons = document.querySelectorAll('.btn-char');
+            
+            const diaryText = document.getElementById('diary-text');
+            const saveBtn = document.getElementById('save-btn');
+            const logoutBtn = document.getElementById('logout-btn');
+            const diaryOwnerName = document.getElementById('diary-owner-name');
+            const saveStatus = document.getElementById('save-status');
+
+            let currentUser = "";
+
+            // --- QUANDO SI CLICCA IL NOME DI UN PERSONAGGIO ---
+            charButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Prende l'ID del personaggio (es. "any") e il nome visualizzato (es. "Any")
+                    currentUser = this.getAttribute('data-char');
+                    const displayName = this.textContent;
+                    
+                    openDiary(displayName);
+                });
+            });
+
+            // --- FUNZIONE CHE APRE IL DIARIO ---
+            function openDiary(displayName) {
+                // Nasconde la selezione, mostra il diario
+                selectionSection.style.display = "none";
+                diarySection.style.display = "block";
+                
+                // Aggiorna il titolo
+                diaryOwnerName.textContent = "Memorie di " + displayName;
+
+                // Cerca nel local storage se esiste già del testo salvato per questo personaggio
+                const savedText = localStorage.getItem("diario_giocatore_" + currentUser);
+                diaryText.value = savedText ? savedText : "";
+            }
+
+            // --- SALVATAGGIO MANUALE (Click sul bottone Salva) ---
+            saveBtn.addEventListener('click', function() {
+                if (currentUser) {
+                    localStorage.setItem("diario_giocatore_" + currentUser, diaryText.value);
+                    
+                    // Mostra la scritta "Salvato! ✔️" per 2 secondi
+                    saveStatus.style.opacity = "1";
+                    setTimeout(() => { saveStatus.style.opacity = "0"; }, 2000);
+                }
+            });
+
+            // --- CHIUSURA DIARIO (Ritorno alla selezione) ---
+            logoutBtn.addEventListener('click', function() {
+                // Esegue comunque un salvataggio automatico di sicurezza prima di chiudere
+                if (currentUser) {
+                    localStorage.setItem("diario_giocatore_" + currentUser, diaryText.value);
+                }
+                
+                // Resetta l'utente e torna alla schermata principale
+                currentUser = "";
+                diarySection.style.display = "none";
+                selectionSection.style.display = "block";
+            });
+        });
+    </script>
+</body>
+</html>
