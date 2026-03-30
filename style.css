@@ -498,6 +498,105 @@ details.month-details > .calendar-table {
     width: calc(100% - 10px);
 }
 
+/* =========================================
+   STILI PER I CAPITOLI E SESSIONI COLLASSABILI
+   ========================================= */
+
+details.chapter {
+    margin-bottom: 30px;
+}
+
+details.chapter > summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 24px;
+    background-color: var(--bg-card);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid rgba(74, 20, 140, 0.15);
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+details.chapter > summary::-webkit-details-marker {
+    display: none;
+}
+
+details.chapter > summary:hover {
+    background-color: rgba(74, 20, 140, 0.06);
+    transform: translateX(4px);
+}
+
+details.chapter > summary h2 {
+    margin: 0;
+    color: var(--primary);
+}
+
+details.chapter > summary::after {
+    content: '▼';
+    color: var(--primary);
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+details.chapter[open] > summary::after {
+    transform: rotate(180deg);
+}
+
+details.chapter > :not(summary) {
+    margin-left: 10px;
+}
+
+details.session {
+    margin-bottom: 15px;
+}
+
+details.session > summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(74, 20, 140, 0.04);
+    border-radius: var(--radius);
+    border: 1px solid rgba(74, 20, 140, 0.08);
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+details.session > summary::-webkit-details-marker {
+    display: none;
+}
+
+details.session > summary:hover {
+    background-color: rgba(74, 20, 140, 0.09);
+    transform: translateX(4px);
+}
+
+details.session > summary h3 {
+    margin: 0;
+    color: var(--primary);
+}
+
+details.session > summary::after {
+    content: '▼';
+    color: var(--primary);
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+details.session[open] > summary::after {
+    transform: rotate(180deg);
+}
+
+details.session > :not(summary) {
+    margin-left: 10px;
+}
+
 /* Rientro per i mesi rispetto all'anno */
 .year-content {
     padding-left: 20px;
