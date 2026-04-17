@@ -4,6 +4,7 @@
 }
 
 :root {
+  color-scheme: dark;
   --bg: #251d38;
   /* The deep, dusty purple from the book cover's base */
   --card: #281f3f;
